@@ -10,7 +10,7 @@
             <asp:BoundField HeaderText="Codigo de artículo" DataField="CodigoArticulo" />
              <asp:BoundField HeaderText="Marca" DataField="Marcas.NombreMarca" />
              <asp:BoundField HeaderText="Categoría" DataField="Categorias.NombreCategoria" />
-
+             <asp:BoundField HeaderText="urlImagen" DataField="Imagenes[0].UrlImagen" />
         </Columns>
 
     </asp:GridView>

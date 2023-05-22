@@ -21,10 +21,10 @@ namespace Dominio
 
         public Categoria Categorias { get; set; }
         //Lista de imagenes por si hay mas de 1
-        public List<string> imagenes { get; set; }
+        public List<Imagen> Imagenes { get; set; }
         public Articulo()
         {
-            imagenes = new List<string>();
+            Imagenes = new List<Imagen>();
         }
         
 
