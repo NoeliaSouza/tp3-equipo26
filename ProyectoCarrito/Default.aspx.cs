@@ -7,6 +7,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio;
 using Dominio;
+using System.Net;
+using System.Drawing;
+using System.Security.Cryptography;
+using System.Security.Policy;
 
 namespace ProyectoCarrito
 {
@@ -18,7 +22,7 @@ namespace ProyectoCarrito
             ArticuloNegocio negocio = new ArticuloNegocio();
             ListaArticulo = negocio.listarConSP();
 
-
         }
+                
     }
 }
