@@ -4,36 +4,75 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h2>Bienvenido! </h2>
+    <div>  
+           <%if (Session["listaArticulosFiltrada"] == null || (int)Session["inicio"] == 0)
+             {%>
+               <h2>Bienvenido!</h2>
+           <%}
+             else
+             {
+           %> <h2> Resultado de la busqueda</h2>
+           <%} %>
+    </div>
+   
 
     <%-- Cards --%>
     <div class="row row-cols-1 row-cols-md-3 g-4">
 
-        <% 
-            foreach (Dominio.Articulo art in ListaArticulo)
-            {   /* Place holder si la imagen original falla */
-                string urlImagenOriginal = art.Imagenes[0].UrlImagen;
-                string urlImagenReemplazo = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
+        <%  if (Session["listaArticulosFiltrada"] == null)
+            {
+                foreach (Dominio.Articulo art in ListaArticulo)
+                {   /* Place holder si la imagen original falla */
+                    string urlImagenOriginal = art.Imagenes[0].UrlImagen;
+                    string urlImagenReemplazo = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
 
-                imgImagen.ImageUrl = urlImagenOriginal;
-                imgImagen.Attributes["onerror"] = "this.onerror=null;this.src='" + urlImagenReemplazo + "';";
-
+                    imgImagen.ImageUrl = urlImagenOriginal;
+                    imgImagen.Attributes["onerror"] = "this.onerror=null;this.src='" + urlImagenReemplazo + "';";
         %>
 
-        <div class="col">
-            <div class="card">
-                <asp:Image ID="imgImagen" class="card-img-top" runat="server" CssClass="card-img-top"  style="height: 300px;"/>
+                 <div class="col">
+                      <div class="card">
+                       <asp:Image ID="imgImagen" class="card-img-top" runat="server" CssClass="card-img-top"  style="height: 300px auto;"/>
                              <div class="card-body">
-                             <h5 class="card-title"><%: art.Nombre %> </h5>
-                             <p class="card-text"><%: art.CodigoArticulo %></p>
-                             <p class="card-text"><%:"$" + art.Precio %> </p>
+                                <h5 class="card-title"><%: art.Nombre %> </h5>
+                                <p class="card-text"><%: art.CodigoArticulo %></p>
+                                <p class="card-text"><%:"$" + art.Precio %> </p>
                              <%-- Ver detalle --%>
-                             <a href="#">Ver detalle</a>
-                         </div>
-            </div>
-        </div>
+                                <a href="#">Ver detalle</a>
+                            </div>
+                     </div>
+                 </div>
 
-        <%  }  %>
+        <%      }
+            }
+            else
+            {
+                ListaArticulo = (List<Dominio.Articulo>)Session["ListaArticulosFiltrada"];
+
+                foreach (Dominio.Articulo art in ListaArticulo)
+                {       /* Place holder si la imagen original falla */
+                    string urlImagenOriginal = art.Imagenes[0].UrlImagen;
+                    string urlImagenReemplazo = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
+
+                    Imagen1.ImageUrl = urlImagenOriginal;
+                    Imagen1.Attributes["onerror"] = "this.onerror=null;this.src='" + urlImagenReemplazo + "';";
+
+        %>          <div class="col">
+                        <div class="card">
+                            <asp:Image ID="Imagen1" class="card-img-top" runat="server" CssClass="card-img-top"  style="height: 300px auto;"/>
+                                <div class="card-body">
+                                    <h5 class="card-title"><%: art.Nombre %> </h5>
+                                    <p class="card-text"><%: art.CodigoArticulo %></p>
+                                    <p class="card-text"><%:"$" + art.Precio %> </p>
+                                    <%-- Ver detalle --%>
+                                    <a href="#">Ver detalle</a>
+                                </div>
+                        </div>
+                    </div>
+        
+        <%      }
+                Session["ListaArticulosFiltrada"] = null;
+            } %>
     </div>
 
 

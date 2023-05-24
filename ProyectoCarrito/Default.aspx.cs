@@ -19,8 +19,14 @@ namespace ProyectoCarrito
         public List<Articulo> ListaArticulo{ get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            //version anterior
+            //ArticuloNegocio negocio = new ArticuloNegocio();
+            //ListaArticulo = negocio.listarConSP();
+
             ArticuloNegocio negocio = new ArticuloNegocio();
-            ListaArticulo = negocio.listarConSP();
+            Session.Add("ListaArticulo", negocio.listarConSP());
+            ListaArticulo = (List<Articulo>)Session["ListaArticulo"];
+            Session["inicio"] = 0;
 
         }
                 

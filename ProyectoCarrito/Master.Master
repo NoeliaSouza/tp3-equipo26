@@ -28,13 +28,20 @@
                             <a class="nav-link active text-white" aria-current="page" href="Default.aspx">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active text-white" aria-current="page" href="Listado.aspx">Listado</a>
+                            <a class="nav-link active text-white" aria-current="page" href="Listado.aspx" style="margin-right:25px;">Listado</a>
                         </li>
                     </ul>
                     <%--<form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>--%>
+                     <%--         filtro--%>
+                    <form class="d-flex" role="search">
+                        <asp:TextBox runat="server" ID="txtBuscador" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                        </asp:TextBox>
+                        <asp:Button Text="Buscar" runat="server" ID="btnBuscar" CssClass="btn btn-outline-light" type="submit" OnClick="btnBuscar_Click" />
+
+                    </form>
                 </div>
             </div>
         </nav>
