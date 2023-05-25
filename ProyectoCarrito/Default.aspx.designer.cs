@@ -24,6 +24,15 @@ namespace ProyectoCarrito
         protected global::System.Web.UI.WebControls.Image imgImagen;
 
         /// <summary>
+        /// Control btnDetalle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDetalle;
+
+        /// <summary>
         /// Control Imagen1.
         /// </summary>
         /// <remarks>
@@ -31,5 +40,14 @@ namespace ProyectoCarrito
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image Imagen1;
+
+        /// <summary>
+        /// Control btnDetalle2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDetalle2;
     }
 }

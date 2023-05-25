@@ -38,8 +38,10 @@
                                 <p class="card-text"><%: art.CodigoArticulo %></p>
                                 <p class="card-text"><%:"$" + art.Precio %> </p>
                              <%-- Ver detalle --%>
-                                <a href="#">Ver detalle</a>
+                                 
+                                 <asp:Button Text="Ver Detalle" ID="btnDetalle" CssClass="btn btn-primary" runat="server" OnClick="btnDetalle_Click" CommandArgument='<%= art.Id %>'/>
                             </div>
+                          
                      </div>
                  </div>
 
@@ -65,7 +67,7 @@
                                     <p class="card-text"><%: art.CodigoArticulo %></p>
                                     <p class="card-text"><%:"$" + art.Precio %> </p>
                                     <%-- Ver detalle --%>
-                                    <a href="#">Ver detalle</a>
+                                    <asp:Button Text="Ver Detalle" ID="btnDetalle2" CssClass="btn btn-primary" runat="server" OnClick="btnDetalle_Click" CommandArgument='<%= art.Id %>' />
                                 </div>
                         </div>
                     </div>

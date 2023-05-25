@@ -21,6 +21,7 @@ namespace ProyectoCarrito
         {
             try
             {
+                
                 List<Articulo> lista = (List<Articulo>)Session["ListaArticulo"];
                 List<Articulo> listaFiltrada = lista.Where(x => x.Nombre.ToUpper().Contains(txtBuscador.Text.ToUpper())).ToList();
                 Session.Add("ListaArticulosFiltrada", listaFiltrada);
