@@ -42,6 +42,25 @@
                         <asp:Button Text="Buscar" runat="server" ID="btnBuscar" CssClass="btn btn-outline-light" type="submit" OnClick="btnBuscar_Click" />
 
                     </form>
+
+
+                     <%-- Carrito --%>
+
+
+                    <div class="cart-wrapper">
+                        <a class="nav-link active text-white" aria-current="page" href="#" onclick="desplazarCarrito()">
+                            <i id="iconoCarrito" class="fas fa-shopping-cart"></i>                       
+                             <span id="txtCarrito">Carrito </span>
+                              <span id="contCarrito">(0)</span>
+                        </a>
+                        <div id="detalleCarrito" class="cart-details">
+                            <h3>Productos en el carrito:</h3>
+                            <ul id="itemsCarrito"></ul>
+                        </div>
+                    </div>
+
+
+
                 </div>
             </div>
         </nav>
@@ -73,8 +92,81 @@
 
     <%-- Javascript --%>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    
+    <script src="https://kit.fontawesome.com/88527ccdba.js" crossorigin="anonymous"></script>
+
 
 
 </body>
 </html>
+
+
+<%-- CSS --%>
+<style>
+    .cart-wrapper {
+        display: flex;
+        align-items: center;
+        margin-left: 30px;
+        margin-right: 10px;
+    }
+
+    .cart-details {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        /*background-color: white;*/
+        background-color:black;
+        color:white;
+        padding: 10px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+    /*Acomodamos la parte del carrito*/
+    .nav-link{
+        display:flex;
+    }
+    
+    #iconoCarrito{
+        margin-right:10px;
+    }
+
+    /*Vaciamos la carta de detalle*/
+    .cart-details {
+        display: none;
+    }
+
+    .cart-details.show {
+        display: block;
+    }
+
+    #contCarrito{
+        margin-left:5px;
+    }
+
+</style>
+
+
+<%-- JAVASCRIPT --%>
+<%-- Hacemos click en carrito y aparece el detalle de lo agregado! --%>
+<script>
+    function desplazarCarrito() {
+        var detalleDeCarrito = document.getElementById("detalleCarrito");
+        detalleDeCarrito.classList.toggle("show");
+    }
+</script>
+
+<%-- Agregar articulos al carrito --%>
+<script>
+    var contCesta = 0;
+
+    function sumarAlCarrito() {
+        contCesta++;
+        var contElementosCesta = document.getElementById("contCarrito");
+        contElementosCesta.textContent = "(" + contCesta + ")";
+    }
+
+    // Agregar un evento al enlace "Agregar al carrito. podemos hacerlo así o desde el mismo front: onclick="sumarAlCarrito()""
+    var btnAgregarCesta = document.querySelectorAll(".btn.btn-success");
+    btnAgregarCesta.forEach(function (button) {
+        button.addEventListener("click", sumarAlCarrito);
+    });
+
+</script>

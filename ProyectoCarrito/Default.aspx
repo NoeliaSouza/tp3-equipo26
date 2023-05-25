@@ -4,24 +4,25 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div>  
-           <%if (Session["listaArticulosFiltrada"] == null || (int)Session["inicio"] == 0)
-             {%>
-               <h2>Bienvenido!</h2>
-           <%}
-             else
-             {
-           %> <h2> Resultado de la busqueda</h2>
-           <%} %>
+    <div>
+        <%if (Session["listaArticulosFiltrada"] == null || (int)Session["inicio"] == 0)
+            {%>
+        <h2>Bienvenido!</h2>
+        <%}
+            else
+            {
+        %>
+        <h2>Resultado de la busqueda</h2>
+        <%} %>
     </div>
-   
+
     <%-- Css --%>
     <style>
-      .card-img-top {
-        height: 300px; /* Establece la altura deseada para las imágenes */
-      }
+        .card-img-top {
+            height: 300px; /* Establece la altura deseada para las imágenes */
+        }
     </style>
-    
+
 
 
     <%-- Cards --%>
@@ -38,23 +39,27 @@
                     imgImagen.Attributes["onerror"] = "this.onerror=null;this.src='" + urlImagenReemplazo + "';";
         %>
 
-                 <div class="col">
-                      <div class="card">
-                       <asp:Image ID="imgImagen" class="card-img-top" runat="server" CssClass="card-img-top"  style="height: 300px auto;" />
-                             <div class="card-body">
-                                <h5 class="card-title"><%: art.Nombre %> </h5>
-                                <p class="card-text"><%: art.CodigoArticulo %></p>
-                                <p class="card-text"><%:"$" + art.Precio %> </p>
-                             <%-- Ver detalleeeeeeeeeeeeeeeeeeeeeeeeeeeee --%>
-                                 
-                               <a  href="DetalleArticulo.aspx?id=<%:art.Id %>" class="btn btn-primary">Ver detalle</a>
-                          
-                                 <%--<asp:Button Text="Ver Detalle" ID="btnDetalle" CssClass="btn btn-primary" runat="server" OnClick="btnDetalle_Click" CommandArgument='<%: art.Id %>' />--%>
-                                 <asp:Button Text="Agregar al carrito" ID="btnAgregarCarrito" CssClass="btn btn-success" runat="server" OnClick="btnAgregarCarrito_Click" CommandArgument='<%:art.Id %>' />
-                             </div>
-                          
-                     </div>
-                 </div>
+        <div class="col">
+            <div class="card">
+                <asp:Image ID="imgImagen" class="card-img-top" runat="server" CssClass="card-img-top" Style="height: 300px auto;" />
+                <div class="card-body">
+                    <h5 class="card-title"><%: art.Nombre %> </h5>
+                    <p class="card-text"><%: art.CodigoArticulo %></p>
+                    <p class="card-text"><%:"$" + art.Precio %> </p>
+                    <%-- Ver detalleeeeeeeeeeeeeeeeeeeeeeeeeeeee --%>
+
+                    <a href="DetalleArticulo.aspx?id=<%:art.Id %>" class="btn btn-primary">Ver detalle</a>
+
+
+                    <%-- Agregar al carrito --%>
+                    <a href="#" class="btn btn-success">Agregar al carrito</a>
+
+                    <%--<asp:Button Text="Ver Detalle" ID="btnDetalle" CssClass="btn btn-primary" runat="server" OnClick="btnDetalle_Click" CommandArgument='<%: art.Id %>' />--%>
+                    <%--<asp:Button Text="Agregar al carrito" ID="btnAgregarCarrito" CssClass="btn btn-success" runat="server" OnClick="btnAgregarCarrito_Click" CommandArgument='<%:art.Id %>' />--%>
+                </div>
+
+            </div>
+        </div>
 
         <%      }
             }
@@ -70,20 +75,21 @@
                     Imagen1.ImageUrl = urlImagenOriginal;
                     Imagen1.Attributes["onerror"] = "this.onerror=null;this.src='" + urlImagenReemplazo + "';";
 
-        %>          <div class="col">
-                        <div class="card">
-                            <asp:Image ID="Imagen1" class="card-img-top" runat="server" CssClass="card-img-top"  style="height: 300px auto;"/>
-                                <div class="card-body">
-                                    <h5 class="card-title"><%: art.Nombre %> </h5>
-                                    <p class="card-text"><%: art.CodigoArticulo %></p>
-                                    <p class="card-text"><%:"$" + art.Precio %> </p>
-                                    <%-- Ver detalle --%>
-                                    <a href="DetalleArticulo.aspx?id=<%:art.Id %>" class="btn btn-primary">Ver detalle</a>
-<%--                                    <asp:Button Text="Ver Detalle" ID="btnDetalle2" CssClass="btn btn-primary" runat="server" OnClick="btnDetalle_Click" CommandArgument='<%= art.Id %>' />--%>
-                                </div>
-                        </div>
-                    </div>
-        
+        %>
+        <div class="col">
+            <div class="card">
+                <asp:Image ID="Imagen1" class="card-img-top" runat="server" CssClass="card-img-top" Style="height: 300px auto;" />
+                <div class="card-body">
+                    <h5 class="card-title"><%: art.Nombre %> </h5>
+                    <p class="card-text"><%: art.CodigoArticulo %></p>
+                    <p class="card-text"><%:"$" + art.Precio %> </p>
+                    <%-- Ver detalle --%>
+                    <a href="DetalleArticulo.aspx?id=<%:art.Id %>" class="btn btn-primary">Ver detalle</a>
+                    <%--                                    <asp:Button Text="Ver Detalle" ID="btnDetalle2" CssClass="btn btn-primary" runat="server" OnClick="btnDetalle_Click" CommandArgument='<%= art.Id %>' />--%>
+                </div>
+            </div>
+        </div>
+
         <%      }
                 Session["ListaArticulosFiltrada"] = null;
             } %>
