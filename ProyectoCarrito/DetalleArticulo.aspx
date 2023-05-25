@@ -54,31 +54,35 @@
             margin-top: 20px;
         }
 
-        .carousel-control-prev-icon {
-            color: black;
+        .carousel-control-prev,
+        .carousel-control-next {
+            border: none; /* Remueve el borde */
+            opacity: 0.8; /* Ajusta la opacidad de los botones */
         }
-        carousel-control-next {
-            color:black;
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: black; /* Cambia el color del ícono a blanco */
         }
     </style>
     <%-- Carga de imagen --%>
     <%
-        if (articulo.Id != 0)
-        {
+//if (articulo.Id != 0)
+//{
 
-            //string urlImagenOriginal = articulo.Imagenes[0].UrlImagen;
-            //string urlImagenReemplazo = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
+//    //string urlImagenOriginal = articulo.Imagenes[0].UrlImagen;
+//    //string urlImagenReemplazo = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
 
-            //Imagen1.ImageUrl = urlImagenOriginal;
-            //Imagen1.Attributes["onerror"] = "this.onerror=null;this.src='" + urlImagenReemplazo + "';";
-        }
+//    //Imagen1.ImageUrl = urlImagenOriginal;
+//    //Imagen1.Attributes["onerror"] = "this.onerror=null;this.src='" + urlImagenReemplazo + "';";
+//}
 
 
     %>
     <%
         if (articulo.Id != 0)
         {
-                %>
+    %>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -131,7 +135,7 @@
 
     <%else
         {
-            %>
+    %>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">

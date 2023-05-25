@@ -33,13 +33,6 @@ namespace ProyectoCarrito
             
         }
 
-        private bool IsValidImageUrl(string url)
-        {
-            Uri uriResult;
-            bool isValidUrl = Uri.TryCreate(url, UriKind.Absolute, out uriResult) &&
-                              (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
-
-            return isValidUrl;
-        }
+        
     }
 }
