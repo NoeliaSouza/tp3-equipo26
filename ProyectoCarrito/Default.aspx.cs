@@ -22,13 +22,13 @@ namespace ProyectoCarrito
             //version anterior
             //ArticuloNegocio negocio = new ArticuloNegocio();
             //ListaArticulo = negocio.listarConSP();
-            
-            
-                ArticuloNegocio negocio = new ArticuloNegocio();
-                Session.Add("ListaArticulo", negocio.listarConSP());
-                ListaArticulo = (List<Articulo>)Session["ListaArticulo"];
-                Session["inicio"] = 0;
-            
+
+
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            Session.Add("ListaArticulo", negocio.listarConSP());
+            ListaArticulo = (List<Articulo>)Session["ListaArticulo"];
+            Session["inicio"] = 0;
+
 
         }
 
@@ -41,20 +41,35 @@ namespace ProyectoCarrito
 
                 // //COPIO EL ID QUE OBTUVE A TRAVES DEL EVENTO EN UNA VARIABLE ID Y LA MANDO A DetalleArticulo.aspx
                 var id = btnDetalle.CommandArgument;
-               
+
                 Response.Redirect("DetalleArticulo.aspx?id=" + id);
             }
             catch (Exception ex)
             {
-                
-                throw ;
+
+                throw;
             }
 
 
 
         }
 
+        protected void btnAgregarCarrito_Click(object sender, EventArgs e)
+        {
+            Button btnAgregarCarrito = (Button)sender;
+            int id = int.Parse(btnAgregarCarrito.CommandArgument);
 
 
+            /* cargamos el articulo recibido */
+            //ArticuloNegocio negocio= new ArticuloNegocio();
+            //List<Articulo> lista = negocio.listarConSP();
+            Articulo articulo = ListaArticulo.Find(x => x.Id == id);
+
+            /* agregar funcion para agregar articulo al listado de la pagina "carrito" */
+
+            string mensaje = articulo.Nombre + "agregado al carrito ";
+            /* funcion mostrar mensaje y mandar msj por parametro*/
+
+        }
     }
 }

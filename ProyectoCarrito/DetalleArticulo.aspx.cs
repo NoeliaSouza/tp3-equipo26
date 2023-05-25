@@ -6,17 +6,19 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace ProyectoCarrito
 {
     public partial class DetalleArticulo : System.Web.UI.Page
     {     
-        Articulo articulo = new Articulo();
+       public Articulo articulo = new Articulo();
         
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (Request.QueryString["id"] != null)
-            {
+            {   
+
                 //TRAIGO DESDE DEFAULT EL ID DEL ARTICULO QUE QUIERO MOSTRAR A TRAVES DEL CLICK EN EL BUTTON
                 int id = int.Parse(Request.QueryString["id"]);
 
