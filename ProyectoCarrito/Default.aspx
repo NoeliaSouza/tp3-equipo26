@@ -47,7 +47,7 @@
                                 <p class="card-text"><%:"$" + art.Precio %> </p>
                              <%-- Ver detalleeeeeeeeeeeeeeeeeeeeeeeeeeeee --%>
                                  
-                               <a href="DetalleArticulo.aspx?id=<%:art.Id %>">Ver detalle</a>
+                               <a  href="DetalleArticulo.aspx?id=<%:art.Id %>" class="btn btn-primary">Ver detalle</a>
                           
                                  <%--<asp:Button Text="Ver Detalle" ID="btnDetalle" CssClass="btn btn-primary" runat="server" OnClick="btnDetalle_Click" CommandArgument='<%: art.Id %>' />--%>
                                  <asp:Button Text="Agregar al carrito" ID="btnAgregarCarrito" CssClass="btn btn-success" runat="server" OnClick="btnAgregarCarrito_Click" CommandArgument='<%:art.Id %>' />
@@ -78,7 +78,7 @@
                                     <p class="card-text"><%: art.CodigoArticulo %></p>
                                     <p class="card-text"><%:"$" + art.Precio %> </p>
                                     <%-- Ver detalle --%>
-                                    <a href="DetalleArticulo.aspx?id=<%:art.Id %>">Ver detalle</a>
+                                    <a href="DetalleArticulo.aspx?id=<%:art.Id %>" class="btn btn-primary">Ver detalle</a>
 <%--                                    <asp:Button Text="Ver Detalle" ID="btnDetalle2" CssClass="btn btn-primary" runat="server" OnClick="btnDetalle_Click" CommandArgument='<%= art.Id %>' />--%>
                                 </div>
                         </div>
