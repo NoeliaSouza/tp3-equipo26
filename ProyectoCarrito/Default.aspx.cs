@@ -93,5 +93,9 @@ namespace ProyectoCarrito
             /* funcion mostrar mensaje y mandar msj por parametro*/
 
         }
+        protected void btnEjemplo_Click(object sender, EventArgs e)
+        {
+            string valor = ((Button)sender).CommandArgument;
+        }
     }
 }

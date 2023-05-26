@@ -39,9 +39,9 @@
                             <%-- Ver detalleeeeeeeeeeeeeeeeeeeeeeeeeeeee --%>
                             <a href="DetalleArticulo.aspx?id=<%# Eval("Id") %>" class="btn btn-primary">Ver detalle</a>
                             <%-- Agregar al carrito --%>
-                            <a href="#" class="btn btn-success">Agregar al carrito</a>
+                            <%--<a href="#" class="btn btn-success">Agregar al carrito</a>--%>
                             <%--<asp:Button Text="Ver Detalle" ID="btnDetalle" CssClass="btn btn-primary" runat="server" OnClick="btnDetalle_Click" CommandArgument='<%: art.Id %>' />--%>
-                            <%--<asp:Button Text="Agregar al carrito" ID="btnAgregarCarrito" CssClass="btn btn-success" runat="server" OnClick="btnAgregarCarrito_Click" CommandArgument='<%:art.Id %>' />--%>
+                            <asp:Button Text="Agregar al carrito" ID="btnAgregarCarrito" CssClass="btn btn-success" runat="server" OnClick="btnAgregarCarrito_Click" CommandArgument='<%:art.Id %>' />
                         </div>
                     </div>
                 </div>

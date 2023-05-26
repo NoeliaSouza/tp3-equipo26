@@ -36,12 +36,12 @@
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>--%>
                      <%--         filtro--%>
-                    <form class="d-flex" role="search">
+                    
                         <asp:TextBox runat="server" ID="txtBuscador" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
                         </asp:TextBox>
                         <asp:Button Text="Buscar" runat="server" ID="btnBuscar" CssClass="btn btn-outline-light" type="submit" OnClick="btnBuscar_Click" />
 
-                    </form>
+                   
 
 
                      <%-- Carrito --%>
