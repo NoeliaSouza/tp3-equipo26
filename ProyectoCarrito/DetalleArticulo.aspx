@@ -65,17 +65,18 @@
             background-color: black; /* Cambia el color del ícono a blanco */
         }
     </style>
+
     <%-- Carga de imagen --%>
     <%
-//if (articulo.Id != 0)
-//{
-
-//    //string urlImagenOriginal = articulo.Imagenes[0].UrlImagen;
-//    //string urlImagenReemplazo = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
-
-//    //Imagen1.ImageUrl = urlImagenOriginal;
-//    //Imagen1.Attributes["onerror"] = "this.onerror=null;this.src='" + urlImagenReemplazo + "';";
-//}
+        //if (articulo.Id != 0)
+        //{
+        
+        //    //string urlImagenOriginal = articulo.Imagenes[0].UrlImagen;
+        //    //string urlImagenReemplazo = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
+        
+        //    //Imagen1.ImageUrl = urlImagenOriginal;
+        //    //Imagen1.Attributes["onerror"] = "this.onerror=null;this.src='" + urlImagenReemplazo + "';";
+        //}
 
 
     %>

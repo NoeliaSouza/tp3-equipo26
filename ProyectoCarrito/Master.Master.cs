@@ -16,30 +16,43 @@ namespace ProyectoCarrito
 
         }
 
-
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             try
             {
-                
                 List<Articulo> lista = (List<Articulo>)Session["ListaArticulo"];
                 List<Articulo> listaFiltrada = lista.Where(x => x.Nombre.ToUpper().Contains(txtBuscador.Text.ToUpper())).ToList();
-                Session.Add("ListaArticulosFiltrada", listaFiltrada);
 
-                if (txtBuscador.Text == "")
-                {
-                    Session["inicio"] = 0;
-                }
-                else { Session["inicio"] = 1; }
+                Session["ListaArticulosFiltrada"] = listaFiltrada;
+                Session["inicio"] = string.IsNullOrEmpty(txtBuscador.Text) ? 0 : 1;
+
+                // Redireccion
+                Response.Redirect("Default.aspx");
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
-
-
-
         }
+
+        //version anterior con foreach
+        //protected void btnBuscar_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        List<Articulo> lista = (List<Articulo>)Session["ListaArticulo"];
+        //        List<Articulo> listaFiltrada = lista.Where(x => x.Nombre.ToUpper().Contains(txtBuscador.Text.ToUpper())).ToList();
+        //        Session.Add("ListaArticulosFiltrada", listaFiltrada);
+        //        if (txtBuscador.Text == "")
+        //        {
+        //            Session["inicio"] = 0;
+        //        }
+        //        else { Session["inicio"] = 1; }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
     }
 }

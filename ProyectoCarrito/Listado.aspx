@@ -17,7 +17,7 @@
          <Columns>
              <%--<asp:BoundField  HeaderText="Id" DataField="Id" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto"/>--%>
              <asp:BoundField HeaderText="Nombre de artículo" DataField="Nombre" />
-            <asp:BoundField HeaderText="Codigo de artículo" DataField="CodigoArticulo" />
+             <asp:BoundField HeaderText="Codigo de artículo" DataField="CodigoArticulo" />
              <asp:BoundField HeaderText="Marca" DataField="Marcas.NombreMarca" />
              <asp:BoundField HeaderText="Categoría" DataField="Categorias.NombreCategoria" />
              <asp:BoundField HeaderText="urlImagen" DataField="Imagenes[0].UrlImagen" Visible="false" />

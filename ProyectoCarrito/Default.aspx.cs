@@ -23,14 +23,42 @@ namespace ProyectoCarrito
             //ArticuloNegocio negocio = new ArticuloNegocio();
             //ListaArticulo = negocio.listarConSP();
 
-
             ArticuloNegocio negocio = new ArticuloNegocio();
             Session.Add("ListaArticulo", negocio.listarConSP());
             ListaArticulo = (List<Articulo>)Session["ListaArticulo"];
             Session["inicio"] = 0;
 
+            if (Session["listaArticulosFiltrada"] == null)
+            {
+                repRepetidor.DataSource = ListaArticulo;
+                repRepetidor.DataBind();
+            }
+            else
+            {
+                repRepetidor.DataSource = (List<Articulo>)Session["ListaArticulosFiltrada"];
+                repRepetidor.DataBind();
+                Session["ListaArticulosFiltrada"] = null;
+            }
 
         }
+
+        //Validacion imagen
+        protected void repRepetidor_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                Dominio.Articulo art = (Dominio.Articulo)e.Item.DataItem;
+                System.Web.UI.WebControls.Image imgImagen = (System.Web.UI.WebControls.Image)e.Item.FindControl("imgImagen");
+
+                /* Place holder si la imagen original falla */
+                string urlImagenOriginal = art.Imagenes[0].UrlImagen;
+                string urlImagenReemplazo = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
+
+                imgImagen.ImageUrl = urlImagenOriginal;
+                imgImagen.Attributes["onerror"] = "this.onerror=null;this.src='" + urlImagenReemplazo + "';";
+            }
+        }
+
 
         //protected void btnDetalle_Click(object sender, EventArgs e)
         //{
@@ -38,20 +66,14 @@ namespace ProyectoCarrito
         //    {
         //        //RECIVO LO DEL BOTON EN ESTE EVENTO
         //        Button btnDetalle = (Button)sender;
-
         //        // //COPIO EL ID QUE OBTUVE A TRAVES DEL EVENTO EN UNA VARIABLE ID Y LA MANDO A DetalleArticulo.aspx
         //        var id = btnDetalle.CommandArgument;
-
         //        Response.Redirect("DetalleArticulo.aspx?id=" + id);
         //    }
         //    catch (Exception ex)
         //    {
-
         //        throw;
         //    }
-
-
-
         //}
 
         protected void btnAgregarCarrito_Click(object sender, EventArgs e)

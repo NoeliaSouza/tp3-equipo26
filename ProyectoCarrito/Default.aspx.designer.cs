@@ -15,21 +15,12 @@ namespace ProyectoCarrito
     {
 
         /// <summary>
-        /// Control imgImagen.
+        /// Control repRepetidor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgImagen;
-
-        /// <summary>
-        /// Control Imagen1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Imagen1;
+        protected global::System.Web.UI.WebControls.Repeater repRepetidor;
     }
 }
