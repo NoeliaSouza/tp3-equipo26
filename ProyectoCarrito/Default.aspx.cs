@@ -11,6 +11,7 @@ using System.Net;
 using System.Drawing;
 using System.Security.Cryptography;
 using System.Security.Policy;
+using System.Web.UI.HtmlControls;
 
 namespace ProyectoCarrito
 {
@@ -23,22 +24,33 @@ namespace ProyectoCarrito
             //ArticuloNegocio negocio = new ArticuloNegocio();
             //ListaArticulo = negocio.listarConSP();
 
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            Session.Add("ListaArticulo", negocio.listarConSP());
-            ListaArticulo = (List<Articulo>)Session["ListaArticulo"];
-            Session["inicio"] = 0;
+            if (!IsPostBack)
+            {
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                Session.Add("ListaArticulo", negocio.listarConSP());
+                ListaArticulo = (List<Articulo>)Session["ListaArticulo"];
+                Session["inicio"] = 0;
 
-            if (Session["listaArticulosFiltrada"] == null)
-            {
-                repRepetidor.DataSource = ListaArticulo;
-                repRepetidor.DataBind();
+                if (Session["Carrito"] == null)
+                {
+                    Carrito carrito = new Carrito();
+                    Session["Carrito"] = carrito;
+                }
+
+                if (Session["listaArticulosFiltrada"] == null)
+                {
+                    repRepetidor.DataSource = ListaArticulo;
+                    repRepetidor.DataBind();
+                }
+                else
+                {
+                    repRepetidor.DataSource = (List<Articulo>)Session["ListaArticulosFiltrada"];
+                    repRepetidor.DataBind();
+                    Session["ListaArticulosFiltrada"] = null;
+                }
             }
-            else
-            {
-                repRepetidor.DataSource = (List<Articulo>)Session["ListaArticulosFiltrada"];
-                repRepetidor.DataBind();
-                Session["ListaArticulosFiltrada"] = null;
-            }
+
+
 
         }
 
@@ -76,26 +88,33 @@ namespace ProyectoCarrito
         //    }
         //}
 
+        //AGREGAMOS ARTICULOS A LA LISTA DE ARTICULOS DE LA CLASE CARRITO
         protected void btnAgregarCarrito_Click(object sender, EventArgs e)
         {
-            Button btnAgregarCarrito = (Button)sender;
-            int id = int.Parse(btnAgregarCarrito.CommandArgument);
 
+            int id = Convert.ToInt32(((Button)sender).CommandArgument);
+            Carrito carrito = (Carrito)Session["Carrito"];
+            Articulo articulo = new Articulo();
+            ListaArticulo = (List<Articulo>)Session["ListaArticulo"];
+            articulo = ListaArticulo.Find(a => a.Id == id);
+            carrito.AgregarArticulo(articulo);
+            Session["Carrito"] = carrito;
 
-            /* cargamos el articulo recibido */
-            //ArticuloNegocio negocio= new ArticuloNegocio();
-            //List<Articulo> lista = negocio.listarConSP();
-            Articulo articulo = ListaArticulo.Find(x => x.Id == id);
-
-            /* agregar funcion para agregar articulo al listado de la pagina "carrito" */
-
-            string mensaje = articulo.Nombre + "agregado al carrito ";
-            /* funcion mostrar mensaje y mandar msj por parametro*/
 
         }
-        protected void btnEjemplo_Click(object sender, EventArgs e)
+
+        //protected void btnEjemplo_Click(object sender, EventArgs e)
+        //{
+        //    string valor = ((Button)sender).CommandArgument;
+        //}
+
+        // Funcion para actualizar y llamar a la funcion despues del updatePanel para que vuelva a asignar los eventos 
+        protected void panel1_Load(object sender, EventArgs e)
         {
-            string valor = ((Button)sender).CommandArgument;
+            if (!IsPostBack)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "AsignarEventos", "asignarEventos();", true);
+            }
         }
     }
 }
