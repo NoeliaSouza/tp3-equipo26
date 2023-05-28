@@ -72,21 +72,21 @@ namespace ProyectoCarrito
         }
 
 
-        //protected void btnDetalle_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        //RECIVO LO DEL BOTON EN ESTE EVENTO
-        //        Button btnDetalle = (Button)sender;
-        //        // //COPIO EL ID QUE OBTUVE A TRAVES DEL EVENTO EN UNA VARIABLE ID Y LA MANDO A DetalleArticulo.aspx
-        //        var id = btnDetalle.CommandArgument;
-        //        Response.Redirect("DetalleArticulo.aspx?id=" + id);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw;
-        //    }
-        //}
+        protected void btnDetalle_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //RECIVO LO DEL BOTON EN ESTE EVENTO
+                Button btnDetalle = (Button)sender;
+                // //COPIO EL ID QUE OBTUVE A TRAVES DEL EVENTO EN UNA VARIABLE ID Y LA MANDO A DetalleArticulo.aspx
+                var id = btnDetalle.CommandArgument;
+                Response.Redirect("DetalleArticulo.aspx?id=" + id);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         //AGREGAMOS ARTICULOS A LA LISTA DE ARTICULOS DE LA CLASE CARRITO
         protected void btnAgregarCarrito_Click(object sender, EventArgs e)

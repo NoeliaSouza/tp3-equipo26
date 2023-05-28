@@ -64,19 +64,24 @@
         .carousel-control-next-icon {
             background-color: black; /* Cambia el color del ícono a blanco */
         }
+        .carousel-image {
+        height: 500px; /* Ajusta aquí la altura deseada */
+        object-fit: fill; /* Ajusta la forma de ajuste de la imagen */
+    }
+        
     </style>
 
     <%-- Carga de imagen --%>
     <%
-        //if (articulo.Id != 0)
-        //{
-        
-        //    //string urlImagenOriginal = articulo.Imagenes[0].UrlImagen;
-        //    //string urlImagenReemplazo = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
-        
-        //    //Imagen1.ImageUrl = urlImagenOriginal;
-        //    //Imagen1.Attributes["onerror"] = "this.onerror=null;this.src='" + urlImagenReemplazo + "';";
-        //}
+//if (articulo.Id != 0)
+//{
+
+//    //string urlImagenOriginal = articulo.Imagenes[0].UrlImagen;
+//    //string urlImagenReemplazo = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
+
+//    //Imagen1.ImageUrl = urlImagenOriginal;
+//    //Imagen1.Attributes["onerror"] = "this.onerror=null;this.src='" + urlImagenReemplazo + "';";
+//}
 
 
     %>
@@ -95,7 +100,7 @@
                             <% for (int i = 0; i < articulo.Imagenes.Count; i++)
                                 { %>
                             <div class="carousel-item <%= i == 0 ? "active" : "" %>">
-                                <img src="<%= articulo.Imagenes[i].UrlImagen %>" class="d-block w-100" alt="Imagen <%= i %>" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png';">
+                                <img src="<%= articulo.Imagenes[i].UrlImagen %>" class="d-block w-100 carousel-image" alt="Imagen <%= i %>" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png';">
                             </div>
                             <% } %>
                         </div>
@@ -125,6 +130,7 @@
                         </div>
                         <div class="add-to-cart">
                             <button class="btn btn-primary">Agregar a carrito</button>
+                            <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-success" Text="Volver atras" OnClick="btnVolver_Click"/>
                         </div>
                     </div>
                 </div>

@@ -11,6 +11,16 @@
         .card-img-top {
             height: 300px; /* Establece la altura deseada para las imágenes */
         }
+
+
+        .h1 {
+            
+            color: aliceblue;
+            margin-bottom:60px;
+              
+            text-align:center
+
+        }
     </style>
 
 
@@ -22,10 +32,11 @@
         <asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="panel1" runat="server"  OnLoad="panel1_Load">
             <ContentTemplate>
-
+                <h1 class="h1">Nuestros Articulos</h1>
                 <%-- Repeater --%>
              <div class="row row-cols-3">
-                <asp:Repeater ID="repRepetidor" runat="server" OnItemDataBound="repRepetidor_ItemDataBound">
+                
+                 <asp:Repeater ID="repRepetidor" runat="server" OnItemDataBound="repRepetidor_ItemDataBound">
                     <ItemTemplate>
                         <div class="col">
                             <div class="card">
@@ -35,10 +46,10 @@
                                     <p class="card-text"><%# Eval("CodigoArticulo")%></p>
                                     <p class="card-text"><%# Eval("Precio")%> </p>
                                     <%-- Ver detalleeeeeeeeeeeeeeeeeeeeeeeeeeeee --%>
-                                    <a href="DetalleArticulo.aspx?id=<%# Eval("Id") %>" class="btn btn-primary">Ver detalle</a>
+                                    <%--<a href="DetalleArticulo.aspx?id=<%# Eval("Id") %>" class="btn btn-primary">Ver detalle</a>--%>
                                     <%-- Agregar al carrito --%>
                                     <%--<a href="#" class="btn btn-success">Agregar al carrito</a>--%>
-                                    <%--<asp:Button Text="Ver Detalle" ID="btnDetalle" CssClass="btn btn-primary" runat="server" OnClick="btnDetalle_Click" CommandArgument='<%: art.Id %>' />--%>
+                                    <asp:Button Text="Ver Detalle" ID="btnDetalle" CssClass="btn btn-primary" runat="server" OnClick="btnDetalle_Click" CommandArgument='<%#Eval("Id")%>' />
                                     <asp:Button Text="Agregar al carrito" ID="btnEjemplo" CssClass="btn btn-success" runat="server" OnClick="btnAgregarCarrito_Click" CommandArgument='<%# Eval("Id") %>' />
 
                                 </div>
