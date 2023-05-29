@@ -17,7 +17,7 @@
     <form id="form1" runat="server">
 
         <%-- Nav bar --%>
-        <nav class="navbar navbar-expand-lg bg-dark fixed-top navbar-light">
+        <nav class="navbar navbar-expand-lg  fixed-top navbar-light">
             <div class="container-fluid">
                 <%-- <a class="navbar-brand" href="#">Home</a>--%>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,37 +37,42 @@
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>--%>
                     <%--  filtro--%>
-                   
-                         <div class="buscar">
-                            <asp:TextBox runat="server" ID="txtBuscador" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
-                            </asp:TextBox>
-                        </div>
-                        
-                        <asp:Button Text="Buscar" runat="server" ID="btnBuscar" CssClass="btn btn-outline-light" type="submit" OnClick="btnBuscar_Click" />
 
-                   
+                    <div class="buscar">
+                        <asp:TextBox runat="server" ID="txtBuscador" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                        </asp:TextBox>
+                    </div>
+
+                    <asp:Button Text="Buscar" runat="server" ID="btnBuscar" CssClass="btn btn-outline-light" type="submit" OnClick="btnBuscar_Click" />
 
 
-                    <%-- Carrito --%>
 
+
+                    <%-- Icono Carrito --%>
 
                     <div class="cart-wrapper">
-                        <a class="nav-link active text-white" aria-current="page" href="#" onclick="desplazarCarrito()">
+                        <a class="nav-link active text-white" aria-current="page" href="#" onclick="desplazarCarrito(event)">
                             <i id="iconoCarrito" class="fas fa-shopping-cart"></i>
                             <span id="txtCarrito">Carrito </span>
                             <span id="contCarrito">(0)</span>
                         </a>
-                        <div id="detalleCarrito" class="cart-details" runat="server">
-                            <h3>Productos en el carrito:</h3>
-                            <ul id="itemsCarrito" runat="server"></ul>
+                     </div>
+                        <%-- Mini barra carrito --%>
+                        <div id="miniCartContainer" class="mini-cart-container ">
+                            <iframe id="miniCarritoFrame" frameborder="0" scrolling="no" style="width: 33%; height: 100%;"></iframe>
                         </div>
+
+
+
                     </div>
-
-
-
                 </div>
-            </div>
         </nav>
+
+
+        <%-- Mensaje Art. agregado --%>
+        <div id="mensajeCarrito">
+            Artículo agregado al carrito
+        </div>
 
         <br />
         <br />
@@ -106,6 +111,10 @@
 
 <%-- CSS --%>
 <style>
+    .navbar{
+        background-color:black;
+    }
+
     .cart-wrapper {
         display: flex;
         align-items: center;
@@ -148,21 +157,86 @@
     /* efecto?? */
     body {
         background-color: #170b2a;
+        /*background-color: #8a8eab;*/
     }
 
     .buscar {
         margin-right: 1rem;
     }
+
+
+    /* Barra mini carrito */
+    .mini-cart-container {
+        width:80%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        transition: transform 0.3s ease-out;
+        transform: translateX(100%);
+        z-index: 9999;
+        margin-left: auto;
+    }
+
+        .mini-cart-container.active {
+            transform: translateX(75%);
+        }
+
+    /* Mensaje carrito */
+    #mensajeCarrito {
+        color: white;
+        background-color: green;
+        position: fixed;
+        top: 6vh;
+        right: 0.5vh;
+        display: none;
+        padding: 10px;
+        z-index: 9999;
+    }
 </style>
 
 
 <%-- JAVASCRIPT --%>
-<%-- Hacemos click en carrito y aparece el detalle de lo agregado! --%>
+
 <script>
-    function desplazarCarrito() {
-        var detalleDeCarrito = document.getElementById("detalleCarrito");
-        detalleDeCarrito.classList.toggle("show");
+    <%-- Hacemos click en carrito y aparece el detalle de lo agregado! --%>
+    function desplazarCarrito(event) {
+        event.preventDefault(); // Evita la acción predeterminada del evento 
+
+        var miniCartContainer = document.getElementById('miniCartContainer');
+
+        if (miniCartContainer.classList.contains('active')) {
+            miniCartContainer.style.transform = 'translateX(100%)';
+            setTimeout(function () {
+                miniCartContainer.style.display = 'none';
+            }, 300);
+        } else {
+            miniCartContainer.style.display = 'block';
+            miniCartContainer.style.transform = 'translateX(20)';
+        }
+
+        miniCartContainer.classList.toggle('active');
     }
+
+    /* Para que no tener que recargar la pagina para volver a poder abrir y cerrar el carrito */
+    window.addEventListener('message', function (event) {
+        if (event.data === 'cerrarMiniCartContainer') {
+            var miniCartContainer = document.getElementById('miniCartContainer');
+            miniCartContainer.style.display = 'none';
+            miniCartContainer.classList.remove('active');
+        }
+    });
+
+
+    /* Cargamos la pagina miniCarrito */
+    window.addEventListener('DOMContentLoaded', function () {
+        var miniCarritoFrame = document.getElementById('miniCarritoFrame');
+        miniCarritoFrame.src = 'miniCarrito.aspx';
+    });
+
+
+
+
 </script>
 
 <%-- Agregar articulos al carrito --%>
@@ -173,6 +247,18 @@
         contCesta++;
         var contElementosCesta = document.getElementById("contCarrito");
         contElementosCesta.textContent = "(" + contCesta + ")";
+
+        /* Agregamos mensajito */
+        var mensaje = document.getElementById("mensajeCarrito");
+        mensaje.textContent = "Artículo agregado al carrito";
+
+        mensaje.style.display = "block";
+
+        setTimeout(function () {
+            mensaje.style.display = "none";
+        }, 4000);
+
+
     }
 
     // Agregar un evento al enlace "Agregar al carrito". Luego sumarAlCarrito suma 1 al contador

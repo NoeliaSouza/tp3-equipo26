@@ -13,11 +13,12 @@
         }
 
 
-        .h1 {
+        .h1
+         {
             
             color: aliceblue;
             margin-bottom:60px;
-              
+            margin-top:30px;
             text-align:center
 
         }
