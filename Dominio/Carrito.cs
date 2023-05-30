@@ -27,6 +27,7 @@ namespace Dominio
             if (ArticulosCantidad.ContainsKey(articulo.Id))
             {
                 ArticulosCantidad[articulo.Id]++;
+                
             }
             else
             {
@@ -52,6 +53,18 @@ namespace Dominio
                 }
 
                 PrecioTotal -= articulo.Precio;
+            }
+        }
+
+        public int ObtenerCantidadArticulo(int idProducto)
+        {
+            if (ArticulosCantidad.ContainsKey(idProducto))
+            {
+                return ArticulosCantidad[idProducto];
+            }
+            else
+            {
+                return 0;
             }
         }
     }

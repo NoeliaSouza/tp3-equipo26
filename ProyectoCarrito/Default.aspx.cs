@@ -84,7 +84,7 @@ namespace ProyectoCarrito
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
