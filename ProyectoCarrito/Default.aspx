@@ -20,16 +20,30 @@
             text-align: center
         }
 
-        .filtros{
-            margin-top:4.5vh;
+        .filtros {
+            /*margin-top:4.5vh;*/
             position: fixed;
             top: 0;
             left: 0;
             height: 100%;
-            width: 30vh; 
-            background-color: black; 
+            background-color: black;
         }
 
+
+
+        .filtros {
+            width: 15%;
+            float: left;
+        }
+
+        .cards-container {
+            width: 90%;
+            float: right;
+        }
+
+        .estiloFiltros{
+
+        }
     </style>
 
 
@@ -46,8 +60,9 @@
 
             <div class="filtros">
                 <%--Filtro comun--%>
+                <div class="estiloFiltros">
 
-                <div class="row">
+                <div class="row" style="margin-top:5vh;">
                     <div class="col-6">
                         <div class="mb-3">
                             <asp:Label Text="Buscar" runat="server" Style="color: white;" />
@@ -55,7 +70,7 @@
 
                         </div>
                     </div>
-                    
+
                 </div>
 
                 <div class="row">
@@ -80,7 +95,7 @@
                     <div class="col-3">
                         <div class="mb-3">
                             <asp:Label Text="Campo" ID="ddlCampo1" runat="server" Style="color: white;" />
-                            <asp:DropDownList runat="server"  AutoPostBack="true" ID="ddlCampo" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged">
+                            <asp:DropDownList runat="server" AutoPostBack="true" ID="ddlCampo" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged">
                                 <asp:ListItem Text="Precio" />
                                 <asp:ListItem Text="Nombre" />
                                 <asp:ListItem Text="Marcas" />
@@ -90,41 +105,43 @@
                     </div>
                 </div>
 
-                    <div class="row">
-                        <div class="col-3">
+                <div class="row">
+                    <div class="col-3">
                         <div class="mb-3">
                             <asp:Label Text="Criterio" Style="color: white;" runat="server" />
-                            <asp:DropDownList ID="ddlCriterio" runat="server" >
+                            <asp:DropDownList ID="ddlCriterio" runat="server">
                             </asp:DropDownList>
                         </div>
                     </div>
-                    </div>
-                    
+                </div>
 
-                    <div class="row">
-                         <div class="col-3">
+
+                <div class="row">
+                    <div class="col-3">
                         <div class="mb-3">
                             <asp:Label Text="Filtro" runat="server" Style="color: white;" />
-                            <asp:TextBox runat="server" ID="txtFiltroAvanzado"  />
+                            <asp:TextBox runat="server" ID="txtFiltroAvanzado" />
                         </div>
                     </div>
-                    </div>
-                   
-
-                    <div class="row">
-                        <div class="col-3" style="align-items: center;">
-                            <div class="mb-3">
-                                <asp:Button Text="Buscar" runat="server" ID="btnBuscar" CssClass="btn btn-primary" OnClick="btnBuscar_Click" />
-
-                            </div>
-                        </div>
-                    </div>
-                    <%-- Termina filtro avanzado --%>
-
-                    <%} %>
                 </div>
-                <%-- Terminan filtros --%>
+
+
+                <div class="row">
+                    <div class="col-3" style="align-items: center;">
+                        <div class="mb-3">
+                            <asp:Button Text="Buscar" runat="server" ID="btnBuscar" CssClass="btn btn-primary" OnClick="btnBuscar_Click" />
+
+                        </div>
+                    </div>
+                </div>
+                <%-- Termina filtro avanzado --%>
+
+                <%} %>
             </div>
+                <%-- Estilo filtros --%>
+                </div>
+            <%-- Terminan filtros --%>
+         
         </ContentTemplate>
     </asp:UpdatePanel>
 
@@ -135,32 +152,35 @@
     <asp:UpdatePanel ID="panel1" runat="server" OnLoad="panel1_Load">
         <ContentTemplate>
             <%-- Cards --%>
+            <div class="cards-container">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <h1 class="h1">Nuestros Articulos</h1>
-                <%-- Repeater --%>
-                <div class="row row-cols-3">
+                
+                    <%-- Repeater --%>
+                    <div class="row row-cols-3">
 
-                    <asp:Repeater ID="repRepetidor" runat="server" OnItemDataBound="repRepetidor_ItemDataBound">
-                        <ItemTemplate>
-                            <div class="col">
-                                <div class="card">
-                                    <asp:Image ID="imgImagen" class="card-img-top" runat="server" CssClass="card-img-top" Style="height: 300px auto;" />
-                                    <div class="card-body">
-                                        <h5 class="card-title"><%# Eval("Nombre") %> </h5>
-                                        <p class="card-text"><%# Eval("CodigoArticulo")%></p>
-                                        <p class="card-text"><%# Eval("Precio")%> </p>
-                                        <%-- Ver detalleeeeeeeeeeeeeeeeeeeeeeeeeeeee --%>
-                                        <%--<a href="DetalleArticulo.aspx?id=<%# Eval("Id") %>" class="btn btn-primary">Ver detalle</a>--%>
-                                        <%-- Agregar al carrito --%>
-                                        <%--<a href="#" class="btn btn-success">Agregar al carrito</a>--%>
-                                        <asp:Button Text="Ver Detalle" ID="btnDetalle" CssClass="btn btn-primary" runat="server" OnClick="btnDetalle_Click" CommandArgument='<%#Eval("Id")%>' />
-                                        <asp:Button Text="Agregar al carrito" ID="btnEjemplo" CssClass="btn btn-success" runat="server" OnClick="btnAgregarCarrito_Click" CommandArgument='<%# Eval("Id") %>' />
+                        <asp:Repeater ID="repRepetidor" runat="server" OnItemDataBound="repRepetidor_ItemDataBound">
+                            <ItemTemplate>
+                                <div class="col">
+                                    <div class="card">
+                                        <asp:Image ID="imgImagen" class="card-img-top" runat="server" CssClass="card-img-top" Style="height: 300px auto;" />
+                                        <div class="card-body">
+                                            <h5 class="card-title"><%# Eval("Nombre") %> </h5>
+                                            <p class="card-text"><%# Eval("CodigoArticulo")%></p>
+                                            <p class="card-text"><%# Eval("Precio")%> </p>
+                                            <%-- Ver detalleeeeeeeeeeeeeeeeeeeeeeeeeeeee --%>
+                                            <%--<a href="DetalleArticulo.aspx?id=<%# Eval("Id") %>" class="btn btn-primary">Ver detalle</a>--%>
+                                            <%-- Agregar al carrito --%>
+                                            <%--<a href="#" class="btn btn-success">Agregar al carrito</a>--%>
+                                            <asp:Button Text="Ver Detalle" ID="btnDetalle" CssClass="btn btn-primary" runat="server" OnClick="btnDetalle_Click" CommandArgument='<%#Eval("Id")%>' />
+                                            <asp:Button Text="Agregar al carrito" ID="btnEjemplo" CssClass="btn btn-success" runat="server" OnClick="btnAgregarCarrito_Click" CommandArgument='<%# Eval("Id") %>' />
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
                 </div>
             </div>
         </ContentTemplate>
