@@ -19,6 +19,17 @@
             margin-top: 30px;
             text-align: center
         }
+
+        .filtros{
+            margin-top:4.5vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 30vh; 
+            background-color: black; 
+        }
+
     </style>
 
 
@@ -39,15 +50,19 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="mb-3">
-                            <asp:Label Text="Buscar" runat="server" style="color:white;"/>
-                            <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control" AutoPostBack="true" OnTextChanged="filtro_TextChanged" />
+                            <asp:Label Text="Buscar" runat="server" Style="color: white;" />
+                            <asp:TextBox runat="server" ID="txtFiltro" AutoPostBack="true" OnTextChanged="filtro_TextChanged" />
 
                         </div>
                     </div>
+                    
+                </div>
+
+                <div class="row">
                     <%-- Checkbox --%>
                     <div class="col-6" style="display: flex; flex-direction: column; justify-content: flex-end;">
                         <div class="mb-3">
-                            <asp:CheckBox Text="Filtro Avanzado" runat="server" CssClass="" ID="chkAvanzado" style="color:white;" AutoPostBack="true" OnCheckedChanged="chkAvanzado_CheckedChanged" />
+                            <asp:CheckBox Text="Filtro Avanzado" runat="server" CssClass="" ID="chkAvanzado" Style="color: white;" AutoPostBack="true" OnCheckedChanged="chkAvanzado_CheckedChanged" />
                         </div>
                     </div>
                 </div>
@@ -64,30 +79,37 @@
                 <div class="row">
                     <div class="col-3">
                         <div class="mb-3">
-                            <asp:Label Text="Campo" ID="ddlCampo1" runat="server" style="color:white;"/>
-                            <asp:DropDownList runat="server" CssClass="form-control" AutoPostBack="true" ID="ddlCampo" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged">
+                            <asp:Label Text="Campo" ID="ddlCampo1" runat="server" Style="color: white;" />
+                            <asp:DropDownList runat="server"  AutoPostBack="true" ID="ddlCampo" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged">
                                 <asp:ListItem Text="Precio" />
                                 <asp:ListItem Text="Nombre" />
                                 <asp:ListItem Text="Marcas" />
-                                <asp:ListItem Text="Categorias"/>
+                                <asp:ListItem Text="Categorias" />
                             </asp:DropDownList>
                         </div>
                     </div>
+                </div>
 
-                    <div class="col-3">
+                    <div class="row">
+                        <div class="col-3">
                         <div class="mb-3">
-                            <asp:Label Text="Criterio" style="color:white;" runat="server" />
-                            <asp:DropDownList ID="ddlCriterio" runat="server" CssClass="form-control">
+                            <asp:Label Text="Criterio" Style="color: white;" runat="server" />
+                            <asp:DropDownList ID="ddlCriterio" runat="server" >
                             </asp:DropDownList>
                         </div>
                     </div>
+                    </div>
+                    
 
-                    <div class="col-3">
+                    <div class="row">
+                         <div class="col-3">
                         <div class="mb-3">
-                            <asp:Label Text="Filtro" runat="server"  style="color:white;"/>
-                            <asp:TextBox runat="server" ID="txtFiltroAvanzado" CssClass="form-control" />
+                            <asp:Label Text="Filtro" runat="server" Style="color: white;" />
+                            <asp:TextBox runat="server" ID="txtFiltroAvanzado"  />
                         </div>
                     </div>
+                    </div>
+                   
 
                     <div class="row">
                         <div class="col-3" style="align-items: center;">
@@ -96,8 +118,6 @@
 
                             </div>
                         </div>
-
-
                     </div>
                     <%-- Termina filtro avanzado --%>
 
@@ -142,10 +162,11 @@
                         </ItemTemplate>
                     </asp:Repeater>
                 </div>
+            </div>
         </ContentTemplate>
 
     </asp:UpdatePanel>
-    </div>
+
 
 
 
