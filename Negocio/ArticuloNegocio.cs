@@ -202,13 +202,17 @@ namespace Negocio
 
 
         //LISTAR POR FILTROS
-        /*public List<Articulo> filtrar(string campo, string criterio, string filtro)
+        public List<Articulo> filtrar(string campo, string criterio, string filtro)
         {
             List<Articulo> lista = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string consulta = "SELECT a.Id, Codigo, Nombre, a.Descripcion as DescripcionArticulo, \r\n Precio, m.Descripcion as NombreMarca, c.Descripcion as NombreCategoria, \r\n i.ImagenUrl as imagen from ARTICULOS a \r\n inner join MARCAS m on a.IdMarca=m.Id\r\n left join CATEGORIAS c on a.IdCategoria=c.Id\r\n left join IMAGENES i on a.Id=i.IdArticulo where ";
+                //string consulta = "SELECT a.Id, Codigo, Nombre, a.Descripcion as DescripcionArticulo, \r\n Precio, m.Descripcion as NombreMarca, c.Descripcion as NombreCategoria, \r\n i.ImagenUrl as imagen from ARTICULOS a \r\n inner join MARCAS m on a.IdMarca=m.Id\r\n left join CATEGORIAS c on a.IdCategoria=c.Id\r\n left join IMAGENES i on a.Id=i.IdArticulo where ";
+                string consulta = "SELECT a.Id, Codigo, Nombre, a.Descripcion as DescripcionArticulo, Precio,m.Id as IdMarca, m.Descripcion as NombreMarca,c.Id as IdCategoria, c.Descripcion as NombreCategoria, i.ImagenUrl as imagen,i.Id as IdImagen ,i.IdArticulo as idArticuloImagen from ARTICULOS a left join MARCAS m on a.IdMarca=m.Id left join CATEGORIAS c on a.IdCategoria=c.Id left join IMAGENES i on a.Id=i.IdArticulo where ";
+
+
+
                 if (campo == "Precio")
                 {
                     consulta=sumarFiltrosAConsulta("Precio", criterio, filtro, consulta);
@@ -248,9 +252,12 @@ namespace Negocio
                     string descripcion = datos.Lector["DescripcionArticulo"] == DBNull.Value ? "Sin descripcion" : (string)datos.Lector["DescripcionArticulo"];
                     decimal precio = datos.Lector["Precio"] == DBNull.Value ? 0 : (decimal)datos.Lector["Precio"];
                     string nombre = datos.Lector["Nombre"] == DBNull.Value ? "Sin nombre" : (string)datos.Lector["Nombre"];
-                    string urlImagen = datos.Lector["imagen"] == DBNull.Value ? "https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" : (string)datos.Lector["imagen"];
                     string categorias = datos.Lector["NombreCategoria"] == DBNull.Value ? "Sin categoria" : (string)datos.Lector["NombreCategoria"];
                     string marcas = datos.Lector["NombreMarca"] == DBNull.Value ? "Sin marca" : (string)datos.Lector["NombreMarca"];
+                    //Imagen
+                    int idArticuloImagen = datos.Lector["IdArticuloImagen"] == DBNull.Value ? -1 : (int)datos.Lector["IdArticuloImagen"];
+                    int idImagen = datos.Lector["IdImagen"] == DBNull.Value ? -1 : (int)datos.Lector["IdImagen"];
+                    string urlImagen = datos.Lector["imagen"] == DBNull.Value ? "https://t3.ftcdn.net/jpg/02/48/42/64/240_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" : (string)datos.Lector["imagen"];
 
 
                     //Verificamos si el articulo existe
@@ -269,12 +276,19 @@ namespace Negocio
                             Precio = precio,
                             Categorias = new Categoria { NombreCategoria = categorias },
                             Marcas = new Marca { NombreMarca = marcas },
-                            imagenes = new List<string>() // Inicializamos la lista de imagenes del artículo
+                            Imagenes = new List<Imagen>() // Inicializamos la lista de imagenes del artículo
                         };
+                        
                         lista.Add(articulo);
                     }
                     //Si existe, agregamos la URL de la imagen a la lista de imagenes del artículo
-                    articulo.imagenes.Add(urlImagen);
+                    Imagen imagenes = new Imagen {
+                        Id = idImagen,
+                        UrlImagen=urlImagen,
+                        IdArticulo=idArticuloImagen
+                    }; 
+                    
+                    articulo.Imagenes.Add(imagenes);
 
 
                 }
@@ -373,7 +387,7 @@ namespace Negocio
             return consulta;
         }
 
-
+        /*
         //AGREGAR
         public void Agregar(Articulo articulo) { 
         
