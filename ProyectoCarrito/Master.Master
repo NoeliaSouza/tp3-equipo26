@@ -201,7 +201,9 @@
 <script>
     <%-- Hacemos click en carrito y aparece el detalle de lo agregado! --%>
     function desplazarCarrito(event) {
-        event.preventDefault(); // Evita la acción predeterminada del evento 
+        event.preventDefault(); // Evita la acción predeterminada del evento
+
+
 
         var miniCartContainer = document.getElementById('miniCartContainer');
 
@@ -216,6 +218,10 @@
         }
 
         miniCartContainer.classList.toggle('active');
+
+        var miniCarritoFrame = document.getElementById('miniCarritoFrame');
+       miniCarritoFrame.src = 'miniCarrito.aspx';
+
     }
 
     /* Para que no tener que recargar la pagina para volver a poder abrir y cerrar el carrito */
@@ -228,12 +234,8 @@
     });
 
 
-    /* Cargamos la pagina miniCarrito */
-    window.addEventListener('DOMContentLoaded', function () {
-        var miniCarritoFrame = document.getElementById('miniCarritoFrame');
-        miniCarritoFrame.src = 'miniCarrito.aspx';
-    });
-
+    
+    
 
 
 

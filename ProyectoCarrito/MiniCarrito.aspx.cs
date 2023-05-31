@@ -10,23 +10,24 @@ namespace ProyectoCarrito
 {
     public partial class MiniCarrito : System.Web.UI.Page
     {
-
+       
            
         protected void Page_Load(object sender, EventArgs e)
         {
            
-            
+            if (!IsPostBack) {   
                 if (Session["Carrito"] != null)
-                {
+                {  
                     Carrito carrito = (Carrito)Session["Carrito"];
 
 
                     repCarrito.DataSource = carrito.ListaArticulo;
                     repCarrito.DataBind();
                 lblPrecioTotal.Text = carrito.PrecioTotal.ToString();
+                    
             }
 
-            
+            }
 
 
 
@@ -57,7 +58,7 @@ namespace ProyectoCarrito
                     int cantidad = carrito.ObtenerCantidadArticulo(art.Id);
                     lblCantidad.Text = cantidad.ToString();
                 }
-
+                updatePanelCarrito.Update();
 
             }
 
@@ -84,9 +85,10 @@ namespace ProyectoCarrito
 
             Session["Carrito"] = carrito;
 
-            //updatePanelCarrito.Update();
+           updatePanelCarrito.Update();
 
         }
+
 
         protected void sumarArticulo_Click(object sender, EventArgs e)
         {
@@ -102,8 +104,21 @@ namespace ProyectoCarrito
 
             Session["Carrito"] = carrito;
 
-            //updatePanelCarrito.Update();
+            updatePanelCarrito.Update();
         }
-       
+
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+           
+            
+                Carrito carrito = (Carrito)Session["Carrito"];
+
+
+                repCarrito.DataSource = carrito.ListaArticulo;
+                repCarrito.DataBind();
+                lblPrecioTotal.Text = carrito.PrecioTotal.ToString();
+           
+        }
+
     }
     }

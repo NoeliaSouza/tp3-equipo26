@@ -14,52 +14,53 @@
         <%--<asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>
             <asp:UpdatePanel ID="panelCarrito" runat="server" OnLoad="panelCarrito_Load">
                 <ContentTemplate>--%>
-        <%--<asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>
-            <asp:UpdatePanel ID="updatePanelCarrito" runat="server" UpdateMode="Conditional">
-    <ContentTemplate>--%>
-        <div class="containerArticulos">
-            <asp:Repeater ID="repCarrito" runat="server" OnItemDataBound="repCarrito_ItemDataBound">
-                <ItemTemplate>
+        <asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>
+        <asp:UpdatePanel ID="updatePanelCarrito" runat="server" UpdateMode="Conditional">
+           
+            <ContentTemplate>
+                <div class="containerArticulos">
+                    <asp:Repeater ID="repCarrito" runat="server" OnItemDataBound="repCarrito_ItemDataBound">
+                        <ItemTemplate>
 
 
-                    <div class="card mb-3 text-bg-dark p-3" style="max-width: 360px;">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <asp:Image ID="ImagenCarrito" CssClass="img-fluid rounded-start img-left" runat="server" />
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h4 class="card-title"><%# Eval("Nombre") %></h4>
-                                    <h5 class="card-title"><%# Eval("Marcas.NombreMarca") %></h5>
-                                    <h6 class="card-title">$<%# Eval("Precio") %></h6>
-                                    <div class="botonesYcantidad">
+                            <div class="card mb-3 text-bg-dark p-3" style="max-width: 360px;">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <asp:Image ID="ImagenCarrito" CssClass="img-fluid rounded-start img-left" runat="server" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h4 class="card-title"><%# Eval("Nombre") %></h4>
+                                            <h5 class="card-title"><%# Eval("Marcas.NombreMarca") %></h5>
+                                            <h6 class="card-title">$<%# Eval("Precio") %></h6>
+                                            <div class="botonesYcantidad">
 
-                                        <%-- PASAMOS LOS ID COMO ARGUMENTO A LOS BOTONES PARA QUE ENCUENTRE LOS ARTICULOS QUE TIENE Q RESTAR O SUMAR --%>
-                                        <asp:Button ID="btnRestar" Text="-" runat="server" CssClass="btn btn-light" OnClick="restarArticulo_Click" CommandArgument='<%#Eval("Id")%>' />
-                                        <p>
-                                            CANTIDAD:
+                                                <%-- PASAMOS LOS ID COMO ARGUMENTO A LOS BOTONES PARA QUE ENCUENTRE LOS ARTICULOS QUE TIENE Q RESTAR O SUMAR --%>
+                                                <asp:Button ID="btnRestar" Text="-" runat="server" CssClass="btn btn-light" OnClick="restarArticulo_Click" CommandArgument='<%#Eval("Id")%>' />
+                                                <p>
+                                                    CANTIDAD:
                                             <asp:Label ID="lblCantidad" runat="server"></asp:Label>
-                                        </p>
-                                        <asp:Button ID="btnSumar" Text="+" runat="server" CssClass="btn btn-light" OnClick="sumarArticulo_Click" CommandArgument='<%#Eval("Id")%>' />
+                                                </p>
+                                                <asp:Button ID="btnSumar" Text="+" runat="server" CssClass="btn btn-light" OnClick="sumarArticulo_Click" CommandArgument='<%#Eval("Id")%>' />
 
 
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </ItemTemplate>
+                        </ItemTemplate>
 
-            </asp:Repeater>
+                    </asp:Repeater>
 
-        </div>
-        <div class="card mb-3 text-bg-dark p-3" style="max-width: 360px;">
-            <h4>Precio Total:$<asp:Label ID="lblPrecioTotal" runat="server" Text=""></asp:Label></h4>
-            <asp:Button Text="Pagar" CssClass="btn btn-light" runat="server" />
-        </div>
-        <%-- </ContentTemplate>
-
-            </asp:UpdatePanel>--%>
+                </div>
+                <div class="card mb-3 text-bg-dark p-3" style="max-width: 360px;">
+                    <h4>Precio Total:$<asp:Label ID="lblPrecioTotal" runat="server" Text=""></asp:Label></h4>
+                    <asp:Button Text="Pagar" CssClass="btn btn-light" runat="server" />
+                </div>
+            </ContentTemplate>
+            
+        </asp:UpdatePanel>
     </div>
 
 
