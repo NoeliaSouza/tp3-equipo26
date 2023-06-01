@@ -2,12 +2,21 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="NavContent" runat="server">
+    <style>
+        .titulo{
+            margin-left:12vh;
+        }
+        .containerPrincipal{
+            margin-top:3vh;
+            margin-left:1vh;
+        }
+    </style>
 
     <div class="containerPrincipal">
         <div class="containerCarrito">
-            <h2>Mi Carrito</h2>
-            <button id="btnCerrar">X </button>
+            <h2 class="titulo">Mi Carrito</h2>
+            <button class="btn btn-outline-light" id="btnCerrar">X </button>
         </div>
 
         <%-- LLAMO AL UPDATE Y CREO EL REPETIDOR PARA QUE MUESTRA TODO LO QUE HAY EN CARRITO--%>
@@ -55,7 +64,7 @@
 
                 </div>
                 <div class="card mb-3 text-bg-dark p-3" style="max-width: 360px;">
-                    <h4>Precio Total:$<asp:Label ID="lblPrecioTotal" runat="server" Text=""></asp:Label></h4>
+                    <h4>Total: $<asp:Label ID="lblPrecioTotal" runat="server" Text=""></asp:Label></h4>
                     <asp:Button Text="Pagar" CssClass="btn btn-light" runat="server" OnClientClick="return redirectToPage('Listado.aspx');" />
                 </div>
             </ContentTemplate>
@@ -83,18 +92,19 @@
 
 
         #btnCerrar {
-            margin-left: 20vh;
+            margin-left: 5vh;
         }
 
         .containerArticulos {
-            margin-top: 4vh;
-            height: 600px;
+            margin-top: 3vh;
+            height: 70vh;
             overflow-y: auto;
         }
 
 
         .card.mb-3 {
             display: flex;
+
         }
 
             .card.mb-3 .col-md-4 {

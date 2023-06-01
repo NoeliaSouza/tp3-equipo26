@@ -123,7 +123,7 @@
             </asp:Repeater>
 
             <div style="display: flex; justify-content: flex-end;">
-                <h4 style="color: white;">Precio Total:$<asp:Label ID="lblPrecioTotal" runat="server" Text=""></asp:Label></h4>
+                <h4 style="color: white;">TOTAL: $<asp:Label ID="lblPrecioTotal" runat="server" Text=""></asp:Label></h4>
 
                 <%--<h4 style="color: white;">TOTAL COMPRA: $<%: carrito.PrecioTotal %></h4>--%>
             </div>

@@ -14,9 +14,11 @@
 </head>
 
 <body>
+        
     <form id="form1" runat="server">
 
         <%-- Nav bar --%>
+         <asp:ContentPlaceHolder ID="NavContent" runat="server">
         <nav class="navbar navbar-expand-lg  fixed-top navbar-light">
             <div class="container-fluid">
                 <%-- <a class="navbar-brand" href="#">Home</a>--%>
@@ -67,7 +69,7 @@
                     </div>
                 </div>
         </nav>
-
+  </asp:ContentPlaceHolder>
 
         <%-- Mensaje Art. agregado --%>
         <div id="mensajeCarrito">
@@ -156,9 +158,10 @@
 
     /* efecto?? */
     body {
-        background-color: #170b2a;
+        /*background-color: #170b2a;*/
         /*background-color: #8a8eab;*/
-    }
+        background-color:grey;   
+     }
 
     .buscar {
         margin-right: 1rem;

@@ -76,7 +76,7 @@ namespace ProyectoCarrito
         //}
 
         protected void restarArticulo_Click(object sender, EventArgs e)
-        {
+        {   
             Carrito carrito = (Carrito)Session["Carrito"];
             //RECIVO LO DEL BOTON EN ESTE EVENTO
             Button btnRestar = (Button)sender;

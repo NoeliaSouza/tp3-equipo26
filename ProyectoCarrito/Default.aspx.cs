@@ -17,7 +17,7 @@ namespace ProyectoCarrito
 {
     public partial class Home : System.Web.UI.Page
     {
-        public bool FiltroAvanzado { get; set; }
+        //public bool FiltroAvanzado { get; set; }
         public List<Articulo> ListaArticulo { get; set; }
         
         protected void Page_Load(object sender, EventArgs e)
@@ -26,7 +26,7 @@ namespace ProyectoCarrito
             //ArticuloNegocio negocio = new ArticuloNegocio();
             //ListaArticulo = negocio.listarConSP();
             //FiltroAvanzado = false;
-            FiltroAvanzado = chkAvanzado.Checked;
+            //FiltroAvanzado = chkAvanzado.Checked;
 
             if (!IsPostBack)
             {
@@ -52,6 +52,9 @@ namespace ProyectoCarrito
                     repRepetidor.DataBind();
                     Session["ListaArticulosFiltrada"] = null;
                 }
+
+                cargarCboCriterio("Mayor a", "Menor a", "Igual a");
+
             }
 
 
@@ -133,11 +136,11 @@ namespace ProyectoCarrito
 
         /* Filtro avanzado. Cada vez que chekeamos filtro avanzado, cambiamos el valor del booleano */
         /* El txtFiltro va a estar activado o desactivado depende del valor del booleano Filtro Avanzado */
-        protected void chkAvanzado_CheckedChanged(object sender, EventArgs e)
-        {
-            FiltroAvanzado = chkAvanzado.Checked;
-            txtFiltro.Enabled = !FiltroAvanzado;//txtFiltro comun
-        }
+        //protected void chkAvanzado_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    FiltroAvanzado = chkAvanzado.Checked;
+        //    txtFiltro.Enabled = !FiltroAvanzado;//txtFiltro comun
+        //}
 
         /* cada vez que cambie, cargue el campo de criterio */
         protected void ddlCampo_SelectedIndexChanged(object sender, EventArgs e)
