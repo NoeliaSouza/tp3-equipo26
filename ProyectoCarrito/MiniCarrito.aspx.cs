@@ -1,8 +1,10 @@
 ﻿using Dominio;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Web;
+using System.Web.Caching;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -10,22 +12,23 @@ namespace ProyectoCarrito
 {
     public partial class MiniCarrito : System.Web.UI.Page
     {
-       
-           
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
-           
-            if (!IsPostBack) {   
+
+            if (!IsPostBack)
+            {
                 if (Session["Carrito"] != null)
-                {  
+                {
                     Carrito carrito = (Carrito)Session["Carrito"];
 
 
                     repCarrito.DataSource = carrito.ListaArticulo;
                     repCarrito.DataBind();
-                lblPrecioTotal.Text = carrito.PrecioTotal.ToString();
-                    
-            }
+                    lblPrecioTotal.Text = carrito.PrecioTotal.ToString();
+
+                }
 
             }
 
@@ -41,7 +44,7 @@ namespace ProyectoCarrito
                 Dominio.Articulo art = (Dominio.Articulo)e.Item.DataItem;
                 System.Web.UI.WebControls.Image imgImagen = (System.Web.UI.WebControls.Image)e.Item.FindControl("ImagenCarrito");
 
-                
+
 
                 /* Place holder si la imagen original falla */
                 string urlImagenOriginal = art.Imagenes[0].UrlImagen;
@@ -64,20 +67,21 @@ namespace ProyectoCarrito
 
         }
 
-            //protected void panelCarrito_Load(object sender, EventArgs e)
-            //{
-            //    if (!IsPostBack)
-            //    {
-            //        ScriptManager.RegisterStartupScript(this, GetType(), "AsignarEventos", "asignarEventos();", true);
-            //    }
-            //}
+        //protected void panelCarrito_Load(object sender, EventArgs e)
+        //{
+        //    if (!IsPostBack)
+        //    {
+        //        ScriptManager.RegisterStartupScript(this, GetType(), "AsignarEventos", "asignarEventos();", true);
+        //    }
+        //}
 
         protected void restarArticulo_Click(object sender, EventArgs e)
-        { Carrito carrito = (Carrito)Session["Carrito"];
+        {
+            Carrito carrito = (Carrito)Session["Carrito"];
             //RECIVO LO DEL BOTON EN ESTE EVENTO
             Button btnRestar = (Button)sender;
             // //COPIO EL ID QUE OBTUVE A TRAVES DEL EVENTO EN UNA VARIABLE ID Y LA MANDO A DetalleArticulo.aspx
-           int id = int.Parse(btnRestar.CommandArgument);
+            int id = int.Parse(btnRestar.CommandArgument);
 
             Articulo articulo = carrito.ListaArticulo.FirstOrDefault(a => a.Id == id);
 
@@ -85,7 +89,9 @@ namespace ProyectoCarrito
 
             Session["Carrito"] = carrito;
 
-           updatePanelCarrito.Update();
+            updatePanelCarrito.Update();
+
+           
 
         }
 
@@ -105,20 +111,23 @@ namespace ProyectoCarrito
             Session["Carrito"] = carrito;
 
             updatePanelCarrito.Update();
+
+           
         }
 
         protected void Page_PreRender(object sender, EventArgs e)
         {
-           
-            
-                Carrito carrito = (Carrito)Session["Carrito"];
 
 
-                repCarrito.DataSource = carrito.ListaArticulo;
-                repCarrito.DataBind();
-                lblPrecioTotal.Text = carrito.PrecioTotal.ToString();
-           
+            Carrito carrito = (Carrito)Session["Carrito"];
+
+
+            repCarrito.DataSource = carrito.ListaArticulo;
+            repCarrito.DataBind();
+            lblPrecioTotal.Text = carrito.PrecioTotal.ToString();
+
         }
 
+      
     }
-    }
+}

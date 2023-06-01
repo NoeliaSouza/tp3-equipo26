@@ -16,7 +16,7 @@
                 <ContentTemplate>--%>
         <asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="updatePanelCarrito" runat="server" UpdateMode="Conditional">
-           
+
             <ContentTemplate>
                 <div class="containerArticulos">
                     <asp:Repeater ID="repCarrito" runat="server" OnItemDataBound="repCarrito_ItemDataBound">
@@ -56,15 +56,19 @@
                 </div>
                 <div class="card mb-3 text-bg-dark p-3" style="max-width: 360px;">
                     <h4>Precio Total:$<asp:Label ID="lblPrecioTotal" runat="server" Text=""></asp:Label></h4>
-                    <asp:Button Text="Pagar" CssClass="btn btn-light" runat="server" />
+                    <asp:Button Text="Pagar" CssClass="btn btn-light" runat="server" OnClientClick="return redirectToPage('Listado.aspx');" />
                 </div>
             </ContentTemplate>
-            
+
         </asp:UpdatePanel>
     </div>
 
 
 
+    
+
+
+    <%-- css --%>
 
 
     <style>
@@ -121,8 +125,13 @@
 
     <script>
 
+        //redireccion a listado
+        function redirectToPage(url) {
+            parent.location.href = url;
+            return false; 
+        }
 
-
+        
 
 
         //este agrego para que no tener que recargar la pagina para el evento abrir y cerrar
@@ -146,8 +155,7 @@
             asignarEventos();
         });
 
-
-
+        
 
     </script>
 

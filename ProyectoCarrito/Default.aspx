@@ -52,6 +52,7 @@
 
     <%-- Agregamos updatePanel --%>
     <asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>
+    
 
 
 
@@ -167,7 +168,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title"><%# Eval("Nombre") %> </h5>
                                             <p class="card-text"><%# Eval("CodigoArticulo")%></p>
-                                            <p class="card-text"><%# Eval("Precio")%> </p>
+                                            <p class="card-text">$<%# Eval("Precio")%> </p>
                                             <%-- Ver detalleeeeeeeeeeeeeeeeeeeeeeeeeeeee --%>
                                             <%--<a href="DetalleArticulo.aspx?id=<%# Eval("Id") %>" class="btn btn-primary">Ver detalle</a>--%>
                                             <%-- Agregar al carrito --%>
@@ -207,6 +208,10 @@
 
     <%-- volvemos a asignar los eventos al click del carrito-master --%>
     <script>
+
+        
+
+
         function asignarEventos() {
             var btnAgregarCesta = document.querySelectorAll(".btn.btn-success");
             btnAgregarCesta.forEach(function (button) {
@@ -217,6 +222,12 @@
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
             asignarEventos();
         });
+
+
+        function redirectToListado() {
+            window.location.href = "Listado.aspx";
+        }
+
     </script>
 
 

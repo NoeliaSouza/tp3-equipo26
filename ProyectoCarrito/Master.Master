@@ -29,7 +29,7 @@
                             <a class="nav-link active text-white" aria-current="page" href="Default.aspx">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active text-white" aria-current="page" href="Listado.aspx" style="margin-right: 25px;">Listado</a>
+                            <a class="nav-link active text-white" aria-current="page" href="Listado.aspx" style="margin-right: 25px;">Carrito</a>
                         </li>
                     </ul>
                     <%--<form class="d-flex" role="search">
@@ -59,7 +59,7 @@
                      </div>
                         <%-- Mini barra carrito --%>
                         <div id="miniCartContainer" class="mini-cart-container ">
-                            <iframe id="miniCarritoFrame" frameborder="0" scrolling="no" style="width: 33%; height: 100%;"></iframe>
+                            <iframe   id="miniCarritoFrame" frameborder="0" scrolling="no" style="width: 33%; height: 100%;"></iframe>
                         </div>
 
 
@@ -199,6 +199,10 @@
 <%-- JAVASCRIPT --%>
 
 <script>
+
+
+    
+
     <%-- Hacemos click en carrito y aparece el detalle de lo agregado! --%>
     function desplazarCarrito(event) {
         event.preventDefault(); // Evita la acción predeterminada del evento
@@ -268,5 +272,8 @@
     btnAgregarCesta.forEach(function (button) {
         button.addEventListener("click", sumarAlCarrito);
     });
+
+    
+
 
 </script>
