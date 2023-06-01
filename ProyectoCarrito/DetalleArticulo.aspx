@@ -64,11 +64,11 @@
         .carousel-control-next-icon {
             background-color: black; /* Cambia el color del ícono a blanco */
         }
+
         .carousel-image {
-        height: 500px; /* Ajusta aquí la altura deseada */
-        object-fit: fill; /* Ajusta la forma de ajuste de la imagen */
-    }
-        
+            height: 500px; /* Ajusta aquí la altura deseada */
+            object-fit: fill; /* Ajusta la forma de ajuste de la imagen */
+        }
     </style>
 
     <%-- Carga de imagen --%>
@@ -89,54 +89,63 @@
         if (articulo.Id != 0)
         {
     %>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <%--<img src="imagen.jpg" class="card-img-top" alt="Imagen del artículo">--%>
+    <asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <%--<img src="imagen.jpg" class="card-img-top" alt="Imagen del artículo">--%>
 
-                    <div id="carouselExample" class="carousel slide">
-                        <div class="carousel-inner">
-                            <% for (int i = 0; i < articulo.Imagenes.Count; i++)
-                                { %>
-                            <div class="carousel-item <%= i == 0 ? "active" : "" %>">
-                                <img src="<%= articulo.Imagenes[i].UrlImagen %>" class="d-block w-100 carousel-image" alt="Imagen <%= i %>" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png';">
+
+
+
+                            <div id="carouselExample" class="carousel slide">
+                                <div class="carousel-inner">
+                                    <% for (int i = 0; i < articulo.Imagenes.Count; i++)
+                                        { %>
+                                    <div class="carousel-item <%= i == 0 ? "active" : "" %>">
+                                        <img src="<%= articulo.Imagenes[i].UrlImagen %>" class="d-block w-100 carousel-image" alt="Imagen <%= i %>" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png';">
+                                    </div>
+                                    <% } %>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
                             </div>
-                            <% } %>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
 
-                    <div class="card-body">
-                        <h5 class="card-title"><%: articulo.Nombre %></h5>
-                        <div class="details">
-                            <p><span class="label">Código del articulo:</span> <%: articulo.CodigoArticulo %></p>
-                        </div>
-                        <div class="details">
-                            <p><span class="label">Marca:</span> <%: articulo.Marcas.NombreMarca %></p>
-                        </div>
-                        <div class="details">
-                            <p><span class="label">Categoría:</span> <%:articulo.Categorias.NombreCategoria %></p>
-                        </div>
-                        <div class="details">
-                            <p><span class="label">Precio:</span> <%:"$" + articulo.Precio %></p>
-                        </div>
-                        <div class="add-to-cart">
-                            <button class="btn btn-primary">Agregar a carrito</button>
-                            <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-success" Text="Volver atras" OnClick="btnVolver_Click"/>
+                            <div class="card-body">
+                                <h5 class="card-title"><%: articulo.Nombre %></h5>
+                                <div class="details">
+                                    <p><span class="label">Código del articulo:</span> <%: articulo.CodigoArticulo %></p>
+                                </div>
+                                <div class="details">
+                                    <p><span class="label">Marca:</span> <%: articulo.Marcas.NombreMarca %></p>
+                                </div>
+                                <div class="details">
+                                    <p><span class="label">Categoría:</span> <%:articulo.Categorias.NombreCategoria %></p>
+                                </div>
+                                <div class="details">
+                                    <p><span class="label">Precio:</span> <%:"$" + articulo.Precio %></p>
+                                </div>
+                                <div class="add-to-cart">
+                                    <asp:Button Text="Agregar al carrito" ID="btnAgregar" CssClass="btn btn-success" runat="server" OnClick="btnAgregar_Click" />
+                                    <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-primary" Text="Volver atras" OnClick="btnVolver_Click" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+
+        </ContentTemplate>
+    </asp:UpdatePanel>
     <%  }
     %>
 

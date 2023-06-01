@@ -12,13 +12,13 @@ namespace ProyectoCarrito
     public partial class DetalleArticulo : System.Web.UI.Page
     {
         public Articulo articulo = new Articulo();
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (Request.QueryString["id"] != null)
             {
-                
+
                 //TRAIGO DESDE DEFAULT EL ID DEL ARTICULO QUE QUIERO MOSTRAR A TRAVES DEL CLICK EN EL BUTTON
                 int id = int.Parse(Request.QueryString["id"]);
 
@@ -30,8 +30,36 @@ namespace ProyectoCarrito
                 articulo = ListaArticulo.Find(x => x.Id == id);
 
             }
-            
+
         }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+
+
+                
+                Carrito carrito = (Carrito)Session["Carrito"];
+
+
+                
+                carrito.AgregarArticulo(articulo);
+                Session["Carrito"] = carrito;
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
+
+        }
+
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
