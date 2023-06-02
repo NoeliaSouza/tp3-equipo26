@@ -19,7 +19,7 @@ namespace ProyectoCarrito
     {
         //public bool FiltroAvanzado { get; set; }
         public List<Articulo> ListaArticulo { get; set; }
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             //version anterior
@@ -60,10 +60,10 @@ namespace ProyectoCarrito
                 limpiarRb();
 
 
-                
-                
 
-            } 
+
+
+            }
 
 
 
@@ -212,7 +212,7 @@ namespace ProyectoCarrito
                     else
                     {   // Si el filtro no esta vacio, filtra
 
-                        Session["ListaActiva"]= negocio.filtrar(campo, criterio, filtro);
+                        Session["ListaActiva"] = negocio.filtrar(campo, criterio, filtro);
                         repRepetidor.DataSource = Session["ListaActiva"];
                         //repRepetidor.DataSource = negocio.filtrar(campo, criterio, filtro);
                         repRepetidor.DataBind();
@@ -299,72 +299,76 @@ namespace ProyectoCarrito
             ddlCriterio.Items.Add(criterio3);
         }
 
-        protected void btnRango_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                List<Articulo> lista = (List<Articulo>)Session["ListaActiva"];
-                List<Articulo> filtrada = new List<Articulo>();
 
-                //Session["ListaArticulosFiltradaxRango"]="No se encontraron resultados";
+        //FALTAN MUCHAS VALIDACIONES, Y GENERA ERROR POR EXCEPCIONES EN VARIAS PARTES.
 
 
+        //protected void btnRango_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        List<Articulo> lista = (List<Articulo>)Session["ListaActiva"];
+        //        List<Articulo> filtrada = new List<Articulo>();
 
-                if (txtRangoInicial.Text != "" && txtRangoFinal.Text != "")
-                {
-                    foreach (Articulo a in lista)
-                    {
-                        if (a.Precio >= int.Parse(txtRangoInicial.Text)
-                            && a.Precio <= int.Parse(txtRangoFinal.Text))
-                        {
-                            filtrada.Add(a);
-                        }
-                    }
-                }
-                else if (txtRangoInicial.Text != "" && txtRangoFinal.Text == "")
-                {
-                    foreach (Articulo a in lista)
-                    {
-                        if (a.Precio >= int.Parse(txtRangoInicial.Text))
-                        {
-                            filtrada.Add(a);
-                        }
-                    }
-                }
-                else if (txtRangoFinal.Text != "" && txtRangoInicial.Text == "")
-                {
-                    foreach (Articulo a in lista)
-                    {
-                        if (a.Precio <= int.Parse(txtRangoFinal.Text))
-                        {
-                            filtrada.Add(a);
-                        }
-                    }
-                }
+        //        //Session["ListaArticulosFiltradaxRango"]="No se encontraron resultados";
 
-                else {
 
-                    txtRangoFinal.Attributes["placeholder"] = "Carga 1 o ambos campos obligatoriamente";
-                    txtRangoInicial.Attributes["placeholder"] = "Carga 1 o ambos campos obligatoriamente";
-                    
-                    
-                }
 
-                // Session["ListaArticulo"] = filtrada;
-                // Session["inicio"] = 1;
-                Session["ListaActiva"]= filtrada;
-                repRepetidor.DataSource = filtrada;
-                repRepetidor.DataBind();
-                limpiarRb();
+        //        if (txtRangoInicial.Text != "" && txtRangoFinal.Text != "")
+        //        {
+        //            foreach (Articulo a in lista)
+        //            {
+        //                if (a.Precio >= int.Parse(txtRangoInicial.Text)
+        //                    && a.Precio <= int.Parse(txtRangoFinal.Text))
+        //                {
+        //                    filtrada.Add(a);
+        //                }
+        //            }
+        //        }
+        //        else if (txtRangoInicial.Text != "" && txtRangoFinal.Text == "")
+        //        {
+        //            foreach (Articulo a in lista)
+        //            {
+        //                if (a.Precio >= int.Parse(txtRangoInicial.Text))
+        //                {
+        //                    filtrada.Add(a);
+        //                }
+        //            }
+        //        }
+        //        else if (txtRangoFinal.Text != "" && txtRangoInicial.Text == "")
+        //        {
+        //            foreach (Articulo a in lista)
+        //            {
+        //                if (a.Precio <= int.Parse(txtRangoFinal.Text))
+        //                {
+        //                    filtrada.Add(a);
+        //                }
+        //            }
+        //        }
 
-                // Redireccion
-                //Response.Redirect("Default.aspx");
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //        else {
+
+        //            txtRangoFinal.Attributes["placeholder"] = "Carga 1 o ambos campos obligatoriamente";
+        //            txtRangoInicial.Attributes["placeholder"] = "Carga 1 o ambos campos obligatoriamente";
+
+
+        //        }
+
+        //        // Session["ListaArticulo"] = filtrada;
+        //        // Session["inicio"] = 1;
+        //        Session["ListaActiva"]= filtrada;
+        //        repRepetidor.DataSource = filtrada;
+        //        repRepetidor.DataBind();
+        //        limpiarRb();
+
+        //        // Redireccion
+        //        //Response.Redirect("Default.aspx");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
         private void limpiarRb()
         {
             if (rbRelevancia.Checked)
@@ -377,10 +381,10 @@ namespace ProyectoCarrito
             }
             else if (rbDescendente.Checked)
             {
-                rbDescendente.Checked= false;
+                rbDescendente.Checked = false;
             }
-                
         }
+
         protected void rbRelevancia_CheckedChanged(object sender, EventArgs e)
         {   List<Articulo> listaArticulos = new List<Articulo>();
             if (Session["ListaActiva"] == null)
@@ -445,9 +449,6 @@ namespace ProyectoCarrito
         }
 
         
-        protected void chkAvanzado_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

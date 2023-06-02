@@ -54,6 +54,7 @@
         }
 
         .estiloFiltros {
+            margin-top:30vh;
         }
 
         .filtrosAv {
@@ -67,14 +68,14 @@
 
         .lbOrden {
             margin-top: 10px;
-            margin-left: 10px;
+            margin-left: 7vh;
             color: whitesmoke;
         }
 
         .ordenarLista {
             color: whitesmoke;
-            margin-right: auto;
-            margin-left: 40px;
+           
+            margin-left: 7vh;
             margin-top: 0px;
             padding-left: 0px;
         }
@@ -86,6 +87,8 @@
             align-items: center;
             width: 75%;
         }
+
+        
     </style>
 
 
@@ -116,15 +119,7 @@
 
                     </div>
 
-                    <div class="row">
-                        <%-- Checkbox --%>
-                        <div class="col-6" style="display: flex; flex-direction: column; justify-content: flex-end;">
-                            <div class="busquedaAvanzada">
-
-                                <asp:CheckBox Text="Busqueda Avanzada" runat="server" CssClass="" ID="chkAvanzado" AutoPostBack="true" OnCheckedChanged="chkAvanzado_CheckedChanged" />
-                            </div>
-                        </div>
-                    </div>
+                   
                     <%-- Termina filtro comun --%>
 
 
@@ -132,8 +127,6 @@
                     <%-- Filtro avanzado --%>
                     <%-- Tambien se podría directamente preguntar si chkAvanzado.checked esta en true y ya --%>
 
-                    <%if (chkAvanzado.Checked)
-                        {%>
 
                     <div class="row">
                         <div class="col-3 filtrosAv " style="margin-top: 20vh auto;">
@@ -180,11 +173,11 @@
                     </div>
                     <%-- Termina filtro avanzado --%>
 
-                    <%} %>
+                   
 
                     <%-- Filtro por rango de precio--%>
                     <br />
-                    <div class="lineaDivisoria"></div>
+                    <%--<div class="lineaDivisoria"></div>
                     <br />
                     <div class="rango">
                         <label class="labelPrecio">Filtrar valor entre:</label>
@@ -194,7 +187,7 @@
                         <asp:TextBox class="rangoFinal" runat="server" ID="txtRangoFinal" CssClass="form-control me-2" type="search" placeholder="$ Maximo" aria-label="Maximo">
                         </asp:TextBox>
                         <asp:Button Style="margin-top: 15px;" Text="Buscar" runat="server" ID="btnRango" CssClass="btn btn-outline-light" type="submit" OnClick="btnRango_Click" />
-                    </div>
+                    </div>--%>
 
                     <br />
 
@@ -213,7 +206,7 @@
                 </div>
                 <%-- Estilo filtros --%>
             
-           %>
+           
             </ContentTemplate>
         </asp:UpdatePanel>
         <%-- Terminan filtros --%>
@@ -274,6 +267,8 @@
         .row {
             --bs-gutter-y: 1.5rem;
         }
+
+         
     </style>
 
 
