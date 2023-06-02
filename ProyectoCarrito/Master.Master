@@ -223,7 +223,7 @@
 
 <%-- JAVASCRIPT --%>
 <%--animacion del boton buscar--%>
-<script>
+<%--<script>
     document.getElementById('<%= btnBuscar.ClientID %>').addEventListener('mouseover', function() {
     this.querySelector('.fa-search').classList.add('fa-beat');
   });
@@ -231,7 +231,7 @@
   document.getElementById('<%= btnBuscar.ClientID %>').addEventListener('mouseout', function () {
         this.querySelector('.fa-search').classList.remove('fa-beat');
     });
-</script>
+</script>--%>
 
 
 <script>
