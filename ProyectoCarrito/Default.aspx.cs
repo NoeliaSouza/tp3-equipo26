@@ -59,6 +59,10 @@ namespace ProyectoCarrito
                 cargarCboCriterio("Mayor a", "Menor a", "Igual a");
                 limpiarRb();
 
+
+                
+                
+
             } 
 
 
@@ -317,7 +321,7 @@ namespace ProyectoCarrito
                         }
                     }
                 }
-                else if (txtRangoInicial.Text != "")
+                else if (txtRangoInicial.Text != "" && txtRangoFinal.Text == "")
                 {
                     foreach (Articulo a in lista)
                     {
@@ -327,7 +331,7 @@ namespace ProyectoCarrito
                         }
                     }
                 }
-                else
+                else if (txtRangoFinal.Text != "" && txtRangoInicial.Text == "")
                 {
                     foreach (Articulo a in lista)
                     {
@@ -336,6 +340,14 @@ namespace ProyectoCarrito
                             filtrada.Add(a);
                         }
                     }
+                }
+
+                else {
+
+                    txtRangoFinal.Attributes["placeholder"] = "Carga 1 o ambos campos obligatoriamente";
+                    txtRangoInicial.Attributes["placeholder"] = "Carga 1 o ambos campos obligatoriamente";
+                    
+                    
                 }
 
                 // Session["ListaArticulo"] = filtrada;
@@ -432,6 +444,7 @@ namespace ProyectoCarrito
             }
         }
 
+        
         protected void chkAvanzado_CheckedChanged(object sender, EventArgs e)
         {
 

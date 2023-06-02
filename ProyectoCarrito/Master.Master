@@ -13,46 +13,73 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://kit.fontawesome.com/e5fd6936bc.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-
+   
+    
+    <%-- Código para establecer el valor de MostrarFiltros --%>
+    
+    
+    <% if (Request.Url.AbsolutePath.EndsWith("Default.aspx"))
+        { %>
+    <%
+        MostrarFiltros = true;
+    %>
+    <% }
+    else
+    { %>
+    <%
+        MostrarFiltros = false;
+    %>
+    <% } %>
 </head>
 
 <body>
-        
+
     <form id="form1" runat="server">
 
         <%-- Nav bar --%>
-         <asp:ContentPlaceHolder ID="NavContent" runat="server">
-        <nav class="navbar navbar-expand-lg  fixed-top navbar-light" runat="server">
-            <div class="container-fluid">
-                <%-- <a class="navbar-brand" href="#">Home</a>--%>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse navbar-dark" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active text-white" aria-current="page" href="Default.aspx">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active text-white" aria-current="page" href="Listado.aspx" style="margin-right: 25px;">Carrito</a>
-                        </li>
-                    </ul>
-                    <%--<form class="d-flex" role="search">
+        <asp:ContentPlaceHolder ID="NavContent" runat="server">
+            <nav class="navbar navbar-expand-lg  fixed-top navbar-light" runat="server">
+                <div class="container-fluid">
+                    <%-- <a class="navbar-brand" href="#">Home</a>--%>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse navbar-dark" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active text-white" aria-current="page" href="Default.aspx">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active text-white" aria-current="page" href="Listado.aspx" style="margin-right: 25px;">Carrito</a>
+                            </li>
+                           
+                            <%--SOLO MOSTRAMOS FILTROS AVANZADOS SI ESTAMOS EN DEFAULT--%>
+                            <%if (MostrarFiltros == true)
+                                {
+
+                                    %>
+                            <li class="nav-item">
+                                <a class="nav-link active text-white" runat="server" id="filtroAvanzado" aria-current="page" href="Default.aspx" style="margin-right: 25px;" onclick="return toggleFiltros();">Filtros avanzados</a>
+                            </li>
+                            <%} %>
+
+                        </ul>
+                        <%--<form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>--%>
-                    <%--  filtro--%>
+                        <%--  filtro--%>
 
-                    <div class="buscar">
-                        <asp:TextBox runat="server" ID="txtBuscador" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
-                        </asp:TextBox>
-                    </div>
-                    <asp:LinkButton Text="Buscar" runat="server" ID="btnBuscar" CssClass="btn btn-outline-light" OnClick="btnBuscar_Click">
+                        <div class="buscar">
+                            <asp:TextBox runat="server" ID="txtBuscador" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                            </asp:TextBox>
+                        </div>
+                        <asp:LinkButton Text="Buscar" runat="server" ID="btnBuscar" CssClass="btn btn-outline-light" OnClick="btnBuscar_Click">
                         <i class="fas fa-search"></i>
-                    </asp:LinkButton>
+                        </asp:LinkButton>
 
 
-                    <<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                        <<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                         <asp:UpdatePanel ID="panelContador" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
                                 <%-- Icono Carrito --%>
@@ -71,15 +98,15 @@
 
                         <%-- Mini barra carrito --%>
                         <div id="miniCartContainer" class="mini-cart-container ">
-                            <iframe   id="miniCarritoFrame" frameborder="0" scrolling="no" style="width: 33%; height: 100%;"></iframe>
+                            <iframe id="miniCarritoFrame" frameborder="0" scrolling="no" style="width: 33%; height: 100%;"></iframe>
                         </div>
 
 
 
                     </div>
                 </div>
-        </nav>
-  </asp:ContentPlaceHolder>
+            </nav>
+        </asp:ContentPlaceHolder>
 
         <%-- Mensaje Art. agregado --%>
         <div id="mensajeCarrito">
@@ -123,8 +150,8 @@
 
 <%-- CSS --%>
 <style>
-    .navbar{
-        background-color:black;
+    .navbar {
+        background-color: black;
     }
 
     .cart-wrapper {
@@ -170,18 +197,18 @@
     body {
         /*background-color: #170b2a;*/
         /*background-color: #8a8eab;*/
-        background-color:grey;   
-     }
+        background-color: grey;
+    }
 
     .buscar {
         margin-right: 1rem;
-        width:25%;
+        width: 25%;
     }
 
 
     /* Barra mini carrito */
     .mini-cart-container {
-        width:80%;
+        width: 80%;
         height: 100%;
         position: fixed;
         top: 0;
@@ -210,22 +237,22 @@
 
     /*Animacion del boton buscar*/
     @keyframes fa-beat {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
+        0% {
+            transform: scale(1);
+        }
 
-.fa-beat {
-  animation: fa-beat 1s infinite;
-}
+        50% {
+            transform: scale(1.2);
+        }
 
+        100% {
+            transform: scale(1);
+        }
+    }
 
+    .fa-beat {
+        animation: fa-beat 1s infinite;
+    }
 </style>
 
 
@@ -245,7 +272,7 @@
 <script>
 
 
-    
+
 
     <%-- Hacemos click en carrito y aparece el detalle de lo agregado! --%>
     function desplazarCarrito(event) {
@@ -268,7 +295,7 @@
         miniCartContainer.classList.toggle('active');
 
         var miniCarritoFrame = document.getElementById('miniCarritoFrame');
-       miniCarritoFrame.src = 'miniCarrito.aspx';
+        miniCarritoFrame.src = 'miniCarrito.aspx';
 
     }
 
@@ -281,9 +308,26 @@
         }
     });
 
+    function toggleFiltros() {
+    <%-- Verifica si MostrarFiltros es verdadero --%>
+    <% if (MostrarFiltros) { %>
+        // Obtén una referencia a la barra lateral en la página Default.aspx
+        var filtros = document.getElementById('<%= ContentPlaceHolder1.FindControl("filtros").ClientID %>');
 
-    
-    
+        // Verifica si el elemento existe
+        if (filtros) {
+            // Cambia el estado de visualización de la barra lateral
+            if (filtros.style.display === 'none') {
+                filtros.style.display = 'block';
+            } else {
+                filtros.style.display = 'none';
+            }
+        }
+    <% } %>
+        return false;
+    }
+
+
 
 
 
@@ -319,7 +363,7 @@
         button.addEventListener("click", sumarAlCarrito);
     });
 
-    
+
 
 
 </script>

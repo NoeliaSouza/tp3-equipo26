@@ -27,28 +27,25 @@
             left: 0;
             height: 100%;
             background-color: black;
-
         }
 
-        .busquedaAvanzada{
-            margin:0px;
-            margin-top:70px;
-            color:white;
+        .busquedaAvanzada {
+            margin: 0px;
+            margin-top: 70px;
+            color: white;
             float: left;
-            padding-inline-start:auto;
+            padding-inline-start: auto;
         }
 
-        .lineaDivisoria{
+        .lineaDivisoria {
             width: 100%;
-            height:5px;
-            background-color:lightgray;
+            height: 5px;
+            background-color: lightgray;
         }
 
         .filtros {
             width: 15%;
             float: left;
-
-            
         }
 
         .cards-container {
@@ -56,45 +53,39 @@
             float: right;
         }
 
-        .estiloFiltros{
-            
+        .estiloFiltros {
         }
 
-        .filtrosAv{
-            width:60%;
-            margin-left:5vh;
-            
-            
+        .filtrosAv {
+            width: 60%;
+            margin-left: 5vh;
         }
 
-        .filtroRapido{
-            display:none;
-        }
-        .lbOrden{
-            margin-top:10px;
-            margin-left:10px;
-            color:whitesmoke;
+        .filtroRapido {
+            display: none;
         }
 
-        .ordenarLista{
-        color:whitesmoke;
-        margin-right:auto;
-        margin-left:40px;
-        margin-top:0px;
-        padding-left:0px;
+        .lbOrden {
+            margin-top: 10px;
+            margin-left: 10px;
+            color: whitesmoke;
         }
 
-        .rango{
-            color:whitesmoke;
-            margin:0px auto;
-           
-            align-content:center;
-            align-items:center;
-            width:75%;
+        .ordenarLista {
+            color: whitesmoke;
+            margin-right: auto;
+            margin-left: 40px;
+            margin-top: 0px;
+            padding-left: 0px;
         }
-        
 
-
+        .rango {
+            color: whitesmoke;
+            margin: 0px auto;
+            align-content: center;
+            align-items: center;
+            width: 75%;
+        }
     </style>
 
 
@@ -103,14 +94,14 @@
 
     <%-- Agregamos updatePanel --%>
     <%--<asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>--%>
-    
 
 
+    <div class="filtros" id="filtros" style="display: none;" runat="server">
 
-    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-        <ContentTemplate>
+        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+            <ContentTemplate>
 
-            <div class="filtros">
+
                 <%--Filtro comun--%>
                 <div class="estiloFiltros">
 
@@ -129,8 +120,8 @@
                         <%-- Checkbox --%>
                         <div class="col-6" style="display: flex; flex-direction: column; justify-content: flex-end;">
                             <div class="busquedaAvanzada">
-                               
-                               <asp:CheckBox Text="Busqueda Avanzada" runat="server" CssClass="" ID="chkAvanzado" AutoPostBack="true" OnCheckedChanged="chkAvanzado_CheckedChanged" />
+
+                                <asp:CheckBox Text="Busqueda Avanzada" runat="server" CssClass="" ID="chkAvanzado" AutoPostBack="true" OnCheckedChanged="chkAvanzado_CheckedChanged" />
                             </div>
                         </div>
                     </div>
@@ -141,8 +132,8 @@
                     <%-- Filtro avanzado --%>
                     <%-- Tambien se podría directamente preguntar si chkAvanzado.checked esta en true y ya --%>
 
-                     <%if (chkAvanzado.Checked)
-                    {%>
+                    <%if (chkAvanzado.Checked)
+                        {%>
 
                     <div class="row">
                         <div class="col-3 filtrosAv " style="margin-top: 20vh auto;">
@@ -191,8 +182,8 @@
 
                     <%} %>
 
-                     <%-- Filtro por rango de precio--%>
-                        <br />
+                    <%-- Filtro por rango de precio--%>
+                    <br />
                     <div class="lineaDivisoria"></div>
                     <br />
                     <div class="rango">
@@ -202,16 +193,16 @@
                         <label class="labelSeparador">- </label>
                         <asp:TextBox class="rangoFinal" runat="server" ID="txtRangoFinal" CssClass="form-control me-2" type="search" placeholder="$ Maximo" aria-label="Maximo">
                         </asp:TextBox>
-                        <asp:Button style="margin-top:15px;" Text="Buscar" runat="server" ID="btnRango" CssClass="btn btn-outline-light" type="submit" OnClick="btnRango_Click" />
+                        <asp:Button Style="margin-top: 15px;" Text="Buscar" runat="server" ID="btnRango" CssClass="btn btn-outline-light" type="submit" OnClick="btnRango_Click" />
                     </div>
 
                     <br />
 
-                     <%-- Ordenar la lista mostrada segun criterio--%>
+                    <%-- Ordenar la lista mostrada segun criterio--%>
                     <label class="lbOrden">Ordenar por: </label>
                     <div class="ordenarLista">
 
-                        
+
                         <asp:RadioButton class="orden" GroupName="ordenar" ID="rbRelevancia" runat="server" Text=" Alfabeticamente" AutoPostBack="true" OnCheckedChanged="rbRelevancia_CheckedChanged" />
                         <br />
                         <asp:RadioButton class="orden" GroupName="ordenar" ID="rbAscendente" runat="server" Text=" Menor Precio" AutoPostBack="true" OnCheckedChanged="rbAscendente_CheckedChanged" />
@@ -221,12 +212,12 @@
                     </div>
                 </div>
                 <%-- Estilo filtros --%>
-            </div>
-            <%-- Terminan filtros --%>
-        </ContentTemplate>
-    </asp:UpdatePanel>
-
-
+            
+           %>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <%-- Terminan filtros --%>
+    </div>
 
 
 
@@ -234,9 +225,9 @@
         <ContentTemplate>
             <%-- Cards --%>
             <div class="cards-container">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <h1 class="h1">Nuestros Articulos</h1>
-                
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <h1 class="h1">Nuestros Articulos</h1>
+
                     <%-- Repeater --%>
                     <div class="row row-cols-3">
 
@@ -289,7 +280,11 @@
     <%-- volvemos a asignar los eventos al click del carrito-master --%>
     <script>
 
-        
+        function toggleFiltros() {
+            var filtros = document.getElementById('filtros');
+            filtros.style.display = (filtros.style.display === 'none') ? 'block' : 'none';
+            return false;
+        }
 
 
         function asignarEventos() {
@@ -307,6 +302,9 @@
         function redirectToListado() {
             window.location.href = "Listado.aspx";
         }
+
+
+
 
     </script>
 

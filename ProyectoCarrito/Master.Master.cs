@@ -12,7 +12,7 @@ namespace ProyectoCarrito
 {
     public partial class Master : System.Web.UI.MasterPage
     {
-
+        public bool MostrarFiltros { get; set; }
         public bool NavContentVisible
         {
             get { return NavContent.Visible; }
