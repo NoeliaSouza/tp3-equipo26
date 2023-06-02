@@ -30,7 +30,19 @@
 
         }
 
+        .busquedaAvanzada{
+            margin:0px;
+            margin-top:70px;
+            color:white;
+            float: left;
+            padding-inline-start:auto;
+        }
 
+        .lineaDivisoria{
+            width: 100%;
+            height:5px;
+            background-color:lightgray;
+        }
 
         .filtros {
             width: 15%;
@@ -58,6 +70,31 @@
         .filtroRapido{
             display:none;
         }
+        .lbOrden{
+            margin-top:10px;
+            margin-left:10px;
+            color:whitesmoke;
+        }
+
+        .ordenarLista{
+        color:whitesmoke;
+        margin-right:auto;
+        margin-left:40px;
+        margin-top:0px;
+        padding-left:0px;
+        }
+
+        .rango{
+            color:whitesmoke;
+            margin:0px auto;
+           
+            align-content:center;
+            align-items:center;
+            width:75%;
+        }
+        
+
+
     </style>
 
 
@@ -77,86 +114,115 @@
                 <%--Filtro comun--%>
                 <div class="estiloFiltros">
 
-                <div class="row filtroRapido" style="margin-top:5vh;  ">
-                    <div class="col-6 filtrosAv ">
-                        <div class="mb-3">
-                            <asp:Label Text="Buscar" runat="server" Style="color: white; " />
-                            <asp:TextBox runat="server" ID="txtFiltro" AutoPostBack="true" OnTextChanged="filtro_TextChanged" CssClass="form-control" />
+                    <div class="row filtroRapido" style="margin-top: 5vh;">
+                        <div class="col-6 filtrosAv ">
+                            <div class="mb-3">
+                                <asp:Label Text="Buscar" runat="server" Style="color: white;" />
+                                <asp:TextBox runat="server" ID="txtFiltro" AutoPostBack="true" OnTextChanged="filtro_TextChanged" CssClass="form-control" />
 
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <%-- Checkbox --%>
+                        <div class="col-6" style="display: flex; flex-direction: column; justify-content: flex-end;">
+                            <div class="busquedaAvanzada">
+                               
+                               <asp:CheckBox Text="Busqueda Avanzada" runat="server" CssClass="" ID="chkAvanzado" AutoPostBack="true" OnCheckedChanged="chkAvanzado_CheckedChanged" />
+                            </div>
+                        </div>
+                    </div>
+                    <%-- Termina filtro comun --%>
+
+
+
+                    <%-- Filtro avanzado --%>
+                    <%-- Tambien se podría directamente preguntar si chkAvanzado.checked esta en true y ya --%>
+
+                     <%if (chkAvanzado.Checked)
+                    {%>
+
+                    <div class="row">
+                        <div class="col-3 filtrosAv " style="margin-top: 20vh auto;">
+                            <div class="mb-3">
+                                <asp:Label Text="Campo" ID="ddlCampo1" runat="server" Style="color: white;" />
+                                <asp:DropDownList runat="server" AutoPostBack="true" ID="ddlCampo" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged" CssClass="form-control text-center">
+                                    <asp:ListItem Text="Precio" />
+                                    <asp:ListItem Text="Nombre" />
+                                    <asp:ListItem Text="Marcas" />
+                                    <asp:ListItem Text="Categorias" />
+                                </asp:DropDownList>
+                            </div>
                         </div>
                     </div>
 
-                </div>
-
-                <div class="row">
-                    <%-- Checkbox --%>
-                    <div class="col-6" style="display: flex; flex-direction: column; justify-content: flex-end;">
-                        <div class="mb-3">
-                            <%--<asp:CheckBox Text="Filtro Avanzado" runat="server" CssClass="" ID="chkAvanzado" Style="color: white;" AutoPostBack="true" OnCheckedChanged="chkAvanzado_CheckedChanged" />--%>
+                    <div class="row">
+                        <div class="col-3 filtrosAv ">
+                            <div class="mb-3">
+                                <asp:Label Text="Criterio" Style="color: white;" runat="server" />
+                                <asp:DropDownList ID="ddlCriterio" runat="server" CssClass="form-control text-center">
+                                </asp:DropDownList>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <%-- Termina filtro comun --%>
 
 
-
-                <%-- Filtro avanzado --%>
-                <%-- Tambien se podría directamente preguntar si chkAvanzado.checked esta en true y ya --%>
-
-              <%--  <%if (FiltroAvanzado)
-                    {%>--%>
-
-                <div class="row">
-                    <div class="col-3 filtrosAv " style="margin-top:20vh;">
-                        <div class="mb-3">
-                            <asp:Label Text="Campo" ID="ddlCampo1" runat="server" Style="color: white; " />
-                            <asp:DropDownList runat="server" AutoPostBack="true" ID="ddlCampo" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged"  CssClass="form-control text-center">
-                                <asp:ListItem Text="Precio" />
-                                <asp:ListItem Text="Nombre" />
-                                <asp:ListItem Text="Marcas" />
-                                <asp:ListItem Text="Categorias" />
-                            </asp:DropDownList>
+                    <div class="row">
+                        <div class="col-3 filtrosAv ">
+                            <div class="mb-3">
+                                <asp:Label Text="Filtro" runat="server" Style="color: white;" />
+                                <asp:TextBox runat="server" ID="txtFiltroAvanzado" CssClass="form-control" />
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-3 filtrosAv " >
-                        <div class="mb-3">
-                            <asp:Label Text="Criterio" Style="color: white;" runat="server"  />
-                            <asp:DropDownList ID="ddlCriterio" runat="server" CssClass="form-control text-center">
-                            </asp:DropDownList>
+
+                    <div class="row">
+                        <div class="col-3 filtrosAv " style="align-items: center; margin-top: 4vh;">
+                            <div class="mb-3">
+                                <asp:Button Text="Buscar" runat="server" ID="btnBuscar" CssClass="btn btn-outline-light form-control " OnClick="btnBuscar_Click" />
+
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <%-- Termina filtro avanzado --%>
 
+                    <%} %>
 
-                <div class="row">
-                    <div class="col-3 filtrosAv ">
-                        <div class="mb-3">
-                            <asp:Label Text="Filtro" runat="server" Style="color: white;"  />
-                            <asp:TextBox runat="server" ID="txtFiltroAvanzado" CssClass="form-control" />
-                        </div>
+                     <%-- Filtro por rango de precio--%>
+                        <br />
+                    <div class="lineaDivisoria"></div>
+                    <br />
+                    <div class="rango">
+                        <label class="labelPrecio">Filtrar valor entre:</label>
+                        <asp:TextBox class="rangoInicial" runat="server" ID="txtRangoInicial" CssClass="form-control me-2" type="search" placeholder="$ Minimo" aria-label="Minimo">
+                        </asp:TextBox>
+                        <label class="labelSeparador">- </label>
+                        <asp:TextBox class="rangoFinal" runat="server" ID="txtRangoFinal" CssClass="form-control me-2" type="search" placeholder="$ Maximo" aria-label="Maximo">
+                        </asp:TextBox>
+                        <asp:Button style="margin-top:15px;" Text="Buscar" runat="server" ID="btnRango" CssClass="btn btn-outline-light" type="submit" OnClick="btnRango_Click" />
+                    </div>
+
+                    <br />
+
+                     <%-- Ordenar la lista mostrada segun criterio--%>
+                    <label class="lbOrden">Ordenar por: </label>
+                    <div class="ordenarLista">
+
+                        
+                        <asp:RadioButton class="orden" GroupName="ordenar" ID="rbRelevancia" runat="server" Text=" Relevancia" AutoPostBack="true" OnCheckedChanged="rbRelevancia_CheckedChanged" />
+                        <br />
+                        <asp:RadioButton class="orden" GroupName="ordenar" ID="rbAscendente" runat="server" Text=" Ascendente" AutoPostBack="true" OnCheckedChanged="rbAscendente_CheckedChanged" />
+                        <br />
+                        <asp:RadioButton class="orden" GroupName="ordenar" ID="rbDescendente" runat="server" Text=" Descendente" AutoPostBack="true" OnCheckedChanged="rbDescendente_CheckedChanged" />
+
                     </div>
                 </div>
-
-
-                <div class="row">
-                    <div class="col-3 filtrosAv " style="align-items: center; margin-top:4vh;">
-                        <div class="mb-3">
-                            <asp:Button Text="Buscar" runat="server" ID="btnBuscar" CssClass="btn btn-outline-light form-control " OnClick="btnBuscar_Click"  />
-
-                        </div>
-                    </div>
-                </div>
-                <%-- Termina filtro avanzado --%>
-
-               <%-- <%} %>--%>
-            </div>
                 <%-- Estilo filtros --%>
-                </div>
+            </div>
             <%-- Terminan filtros --%>
-         
         </ContentTemplate>
     </asp:UpdatePanel>
 
@@ -182,7 +248,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title"><%# Eval("Nombre") %> </h5>
                                             <p class="card-text"><%# Eval("CodigoArticulo")%></p>
-                                            <p class="card-text">$<%# Eval("Precio")%> </p>
+                                            <p class="card-text">$<%# Eval("Precio")%></p>
                                             <%-- Ver detalleeeeeeeeeeeeeeeeeeeeeeeeeeeee --%>
                                             <%--<a href="DetalleArticulo.aspx?id=<%# Eval("Id") %>" class="btn btn-primary">Ver detalle</a>--%>
                                             <%-- Agregar al carrito --%>

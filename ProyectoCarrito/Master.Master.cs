@@ -25,6 +25,7 @@ namespace ProyectoCarrito
                 List<Articulo> listaFiltrada = lista.Where(x => x.Nombre.ToUpper().Contains(txtBuscador.Text.ToUpper())).ToList();
 
                 Session["ListaArticulosFiltrada"] = listaFiltrada;
+                Session["ListaActiva"]=listaFiltrada;
                 Session["inicio"] = string.IsNullOrEmpty(txtBuscador.Text) ? 0 : 1;
 
                 // Redireccion
@@ -32,6 +33,7 @@ namespace ProyectoCarrito
             }
             catch (Exception ex)
             {
+                Session.Add("error", ex);
                 throw ex;
             }
         }

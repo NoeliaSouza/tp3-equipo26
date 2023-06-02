@@ -33,6 +33,9 @@ namespace ProyectoCarrito
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 Session.Add("ListaArticulo", negocio.listarConSP());
                 ListaArticulo = (List<Articulo>)Session["ListaArticulo"];
+
+                if (Session["inicio"] == null || (int)Session["inicio"] == 0)
+                { Session["listaActiva"] = ListaArticulo; }
                 Session["inicio"] = 0;
 
                 if (Session["Carrito"] == null)
@@ -54,8 +57,9 @@ namespace ProyectoCarrito
                 }
 
                 cargarCboCriterio("Mayor a", "Menor a", "Igual a");
+                limpiarRb();
 
-            }
+            } 
 
 
 
@@ -204,7 +208,9 @@ namespace ProyectoCarrito
                     else
                     {   // Si el filtro no esta vacio, filtra
 
-                        repRepetidor.DataSource = negocio.filtrar(campo, criterio, filtro);
+                        Session["ListaActiva"]= negocio.filtrar(campo, criterio, filtro);
+                        repRepetidor.DataSource = Session["ListaActiva"];
+                        //repRepetidor.DataSource = negocio.filtrar(campo, criterio, filtro);
                         repRepetidor.DataBind();
 
 
@@ -212,6 +218,7 @@ namespace ProyectoCarrito
                 }
 
                 txtFiltroAvanzado.Text = string.Empty;
+                limpiarRb();
 
             }
             catch (Exception ex)
@@ -288,7 +295,146 @@ namespace ProyectoCarrito
             ddlCriterio.Items.Add(criterio3);
         }
 
+        protected void btnRango_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Articulo> lista = (List<Articulo>)Session["ListaActiva"];
+                List<Articulo> filtrada = new List<Articulo>();
+
+                //Session["ListaArticulosFiltradaxRango"]="No se encontraron resultados";
 
 
+
+                if (txtRangoInicial.Text != "" && txtRangoFinal.Text != "")
+                {
+                    foreach (Articulo a in lista)
+                    {
+                        if (a.Precio >= int.Parse(txtRangoInicial.Text)
+                            && a.Precio <= int.Parse(txtRangoFinal.Text))
+                        {
+                            filtrada.Add(a);
+                        }
+                    }
+                }
+                else if (txtRangoInicial.Text != "")
+                {
+                    foreach (Articulo a in lista)
+                    {
+                        if (a.Precio >= int.Parse(txtRangoInicial.Text))
+                        {
+                            filtrada.Add(a);
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (Articulo a in lista)
+                    {
+                        if (a.Precio <= int.Parse(txtRangoFinal.Text))
+                        {
+                            filtrada.Add(a);
+                        }
+                    }
+                }
+
+                // Session["ListaArticulo"] = filtrada;
+                // Session["inicio"] = 1;
+                Session["ListaActiva"]= filtrada;
+                repRepetidor.DataSource = filtrada;
+                repRepetidor.DataBind();
+                limpiarRb();
+
+                // Redireccion
+                //Response.Redirect("Default.aspx");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        private void limpiarRb()
+        {
+            if (rbRelevancia.Checked)
+            {
+                rbRelevancia.Checked = false;
+            }
+            else if (rbAscendente.Checked)
+            {
+                rbAscendente.Checked = false;
+            }
+            else if (rbDescendente.Checked)
+            {
+                rbDescendente.Checked= false;
+            }
+                
+        }
+        protected void rbRelevancia_CheckedChanged(object sender, EventArgs e)
+        {   List<Articulo> listaArticulos = new List<Articulo>();
+            if (Session["ListaActiva"] == null)
+            {
+               listaArticulos = (List<Articulo>)Session["ListaArticulo"];
+            }
+            else
+            {
+               listaArticulos = (List<Articulo>)Session["ListaActiva"];
+
+            }
+            if (rbRelevancia.Checked) {
+                listaArticulos = listaArticulos.OrderBy(a => a.Nombre).ToList();
+                Session["ListaActiva"] = listaArticulos;
+                repRepetidor.DataSource = listaArticulos;
+                repRepetidor.DataBind();
+                
+            }
+        }
+
+        protected void rbAscendente_CheckedChanged(object sender, EventArgs e)
+        {
+            List<Articulo> listaArticulos = new List<Articulo>();
+            if (Session["ListaActiva"] == null)
+            {
+                listaArticulos = (List<Articulo>)Session["ListaArticulo"];
+            }
+            else
+            {
+                listaArticulos = (List<Articulo>)Session["ListaActiva"];
+
+            }
+
+            if (rbAscendente.Checked)
+            {
+                listaArticulos = listaArticulos.OrderBy(a => a.Precio).ToList();
+                Session["ListaActiva"] = listaArticulos;
+                repRepetidor.DataSource = listaArticulos;
+                repRepetidor.DataBind();
+            }
+        }
+
+        protected void rbDescendente_CheckedChanged(object sender, EventArgs e)
+        {
+            List<Articulo> listaArticulos = new List<Articulo>();
+            if (Session["ListaActiva"] == null)
+            {
+                listaArticulos = (List<Articulo>)Session["ListaArticulo"];
+            }
+            else
+            {
+                listaArticulos = (List<Articulo>)Session["ListaActiva"];
+
+            }
+            if (rbDescendente.Checked)
+            {
+                listaArticulos = listaArticulos.OrderByDescending(a => a.Precio).ToList();
+                Session["ListaActiva"] = listaArticulos;
+                repRepetidor.DataSource = listaArticulos;
+                repRepetidor.DataBind();
+            }
+        }
+
+        protected void chkAvanzado_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
