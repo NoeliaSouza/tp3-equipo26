@@ -76,7 +76,7 @@
             </div>
         </div>
     </div>
-    <asp:ScriptManager ID="script3" runat="server"></asp:ScriptManager>
+    <%--<asp:ScriptManager ID="script3" runat="server"></asp:ScriptManager>--%>
     <asp:UpdatePanel ID="updatePanelCarrito" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
 

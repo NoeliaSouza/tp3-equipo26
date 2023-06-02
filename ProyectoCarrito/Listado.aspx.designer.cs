@@ -15,15 +15,6 @@ namespace ProyectoCarrito
     {
 
         /// <summary>
-        /// Control script3.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager script3;
-
-        /// <summary>
         /// Control updatePanelCarrito.
         /// </summary>
         /// <remarks>

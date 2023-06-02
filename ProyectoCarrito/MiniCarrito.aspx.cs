@@ -12,7 +12,7 @@ namespace ProyectoCarrito
 {
     public partial class MiniCarrito : System.Web.UI.Page
     {
-
+        public bool MostrarNav { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,6 +21,15 @@ namespace ProyectoCarrito
             {
                 if (Session["Carrito"] != null)
                 {
+
+                    Master masterPage = this.Master as Master;
+                    if (masterPage != null)
+                    {
+                        masterPage.NavContentVisible = MostrarNav;
+                    }
+                    MostrarNav = false;
+
+
                     Carrito carrito = (Carrito)Session["Carrito"];
 
 

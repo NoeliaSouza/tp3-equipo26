@@ -102,7 +102,7 @@
 
 
     <%-- Agregamos updatePanel --%>
-    <asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>
+    <%--<asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>--%>
     
 
 

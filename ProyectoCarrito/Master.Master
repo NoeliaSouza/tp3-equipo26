@@ -5,7 +5,7 @@
 <html>
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Maxi Gestión</title>
+    <title>Maxi Market</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <%-- Css --%>
@@ -22,7 +22,7 @@
 
         <%-- Nav bar --%>
          <asp:ContentPlaceHolder ID="NavContent" runat="server">
-        <nav class="navbar navbar-expand-lg  fixed-top navbar-light">
+        <nav class="navbar navbar-expand-lg  fixed-top navbar-light" runat="server">
             <div class="container-fluid">
                 <%-- <a class="navbar-brand" href="#">Home</a>--%>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,15 +52,23 @@
                     </asp:LinkButton>
 
 
-                    <%-- Icono Carrito --%>
+                    <<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                        <asp:UpdatePanel ID="panelContador" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <%-- Icono Carrito --%>
+                                <div class="cart-wrapper">
+                                    <a class="nav-link active text-white" aria-current="page" href="#" onclick="desplazarCarrito(event)">
+                                        <i id="iconoCarrito" class="fas fa-shopping-cart"></i>
+                                        <span id="txtCarrito">Carrito </span>
+                                        <asp:Label ID="lblTotalCantCarrito" runat="server"></asp:Label>
+                                    </a>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
 
-                    <div class="cart-wrapper">
-                        <a class="nav-link active text-white" aria-current="page" href="#" onclick="desplazarCarrito(event)">
-                            <i id="iconoCarrito" class="fas fa-shopping-cart"></i>
-                            <span id="txtCarrito">Carrito </span>
-                            <span id="contCarrito">(0)</span>
-                        </a>
-                     </div>
+
+
+
                         <%-- Mini barra carrito --%>
                         <div id="miniCartContainer" class="mini-cart-container ">
                             <iframe   id="miniCarritoFrame" frameborder="0" scrolling="no" style="width: 33%; height: 100%;"></iframe>

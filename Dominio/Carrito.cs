@@ -67,6 +67,18 @@ namespace Dominio
                 return 0;
             }
         }
+
+
+        public int ObtenerCantidadTotalArticulos()
+        {
+            int totalCantidad = 0;
+            foreach (var cantidad in ArticulosCantidad.Values)
+            {
+                totalCantidad += cantidad;
+            }
+            return totalCantidad;
+        }
+
     }
 
 

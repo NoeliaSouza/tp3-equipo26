@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="NavContent" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
         .titulo{
             margin-left:12vh;
@@ -23,7 +23,7 @@
         <%--<asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>
             <asp:UpdatePanel ID="panelCarrito" runat="server" OnLoad="panelCarrito_Load">
                 <ContentTemplate>--%>
-        <asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>
+        <%--<asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>--%>
         <asp:UpdatePanel ID="updatePanelCarrito" runat="server" UpdateMode="Conditional">
 
             <ContentTemplate>
@@ -172,5 +172,5 @@
 
 
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>

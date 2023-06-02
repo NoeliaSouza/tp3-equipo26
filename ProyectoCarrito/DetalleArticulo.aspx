@@ -89,7 +89,7 @@
         if (articulo.Id != 0)
         {
     %>
-    <asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>
+    <%--<asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>--%>
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <div class="container">
@@ -131,6 +131,11 @@
                                 <div class="details">
                                     <p><span class="label">Categoría:</span> <%:articulo.Categorias.NombreCategoria %></p>
                                 </div>
+
+                                <div class="details">
+                                    <p><span class="label">Descripcion:</span> <%:articulo.Descripcion %></p>
+                                </div>
+
                                 <div class="details">
                                     <p><span class="label">Precio:</span> <%:"$" + articulo.Precio %></p>
                                 </div>
