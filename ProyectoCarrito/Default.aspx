@@ -212,11 +212,11 @@
                     <div class="ordenarLista">
 
                         
-                        <asp:RadioButton class="orden" GroupName="ordenar" ID="rbRelevancia" runat="server" Text=" Relevancia" AutoPostBack="true" OnCheckedChanged="rbRelevancia_CheckedChanged" />
+                        <asp:RadioButton class="orden" GroupName="ordenar" ID="rbRelevancia" runat="server" Text=" Alfabeticamente" AutoPostBack="true" OnCheckedChanged="rbRelevancia_CheckedChanged" />
                         <br />
-                        <asp:RadioButton class="orden" GroupName="ordenar" ID="rbAscendente" runat="server" Text=" Ascendente" AutoPostBack="true" OnCheckedChanged="rbAscendente_CheckedChanged" />
+                        <asp:RadioButton class="orden" GroupName="ordenar" ID="rbAscendente" runat="server" Text=" Menor Precio" AutoPostBack="true" OnCheckedChanged="rbAscendente_CheckedChanged" />
                         <br />
-                        <asp:RadioButton class="orden" GroupName="ordenar" ID="rbDescendente" runat="server" Text=" Descendente" AutoPostBack="true" OnCheckedChanged="rbDescendente_CheckedChanged" />
+                        <asp:RadioButton class="orden" GroupName="ordenar" ID="rbDescendente" runat="server" Text=" Mayor Precio" AutoPostBack="true" OnCheckedChanged="rbDescendente_CheckedChanged" />
 
                     </div>
                 </div>
