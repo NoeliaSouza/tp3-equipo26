@@ -34,23 +34,25 @@ namespace ProyectoCarrito
             try
             {
 
-
-                Carrito carrito2 = (Carrito)Session["Carrito"];
-                int cantidadTotalArticulos = carrito2.ObtenerCantidadTotalArticulos();
-
-                //if (lblTotalCantCarrito != null)
-                if (cantidadTotalArticulos > 0 && lblTotalCantCarrito != null)
+                if (Session["Carrito"] != null)
                 {
-                    //Carrito carrito = (Carrito)Session["Carrito"];
-                    //int cantidadTotalArticulos = carrito.ObtenerCantidadTotalArticulos();
-                    lblTotalCantCarrito.Text = " (" + cantidadTotalArticulos.ToString() + ")";
-                    panelContador.Update();
-                }
+                    Carrito carrito2 = (Carrito)Session["Carrito"];
+                    int cantidadTotalArticulos = carrito2.ObtenerCantidadTotalArticulos();
+
+                    //if (lblTotalCantCarrito != null)
+                    if (cantidadTotalArticulos > 0 && lblTotalCantCarrito != null)
+                    {
+                        //Carrito carrito = (Carrito)Session["Carrito"];
+                        //int cantidadTotalArticulos = carrito.ObtenerCantidadTotalArticulos();
+                        lblTotalCantCarrito.Text = " (" + cantidadTotalArticulos.ToString() + ")";
+                        panelContador.Update();
+                    }
 
 
-                else
-                {
-                    lblTotalCantCarrito.Text = " (0)";
+                    else
+                    {
+                        lblTotalCantCarrito.Text = " (0)";
+                    }
                 }
             }
 

@@ -105,13 +105,14 @@ namespace ProyectoCarrito
         protected void Page_PreRender(object sender, EventArgs e)
         {
 
+            if (Session["Carrito"] != null)
+            {
+                Carrito carrito = (Carrito)Session["Carrito"];
 
-            Carrito carrito = (Carrito)Session["Carrito"];
-
-            repCarrito.DataSource = carrito.ListaArticulo;
-            repCarrito.DataBind();
-            lblPrecioTotal.Text = carrito.PrecioTotal.ToString();
-
+                repCarrito.DataSource = carrito.ListaArticulo;
+                repCarrito.DataBind();
+                lblPrecioTotal.Text = carrito.PrecioTotal.ToString();
+            }
 
         }
 
