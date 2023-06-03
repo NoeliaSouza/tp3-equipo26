@@ -236,6 +236,10 @@ namespace ProyectoCarrito
         {
             if (ddlCampo.SelectedIndex < 0 || ddlCampo.SelectedIndex < 0)
             {
+                lblMensajeError.Text = "Debe seleccionar un campo y un criterio de búsqueda.";
+                lblMensajeError.Visible = true;
+                updatePanelMensajeError.Update();
+                timerMensajeError.Enabled = true;
                 //("Debe seleccionar un campo y un criterio de búsqueda.", "Error de selección", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -243,14 +247,36 @@ namespace ProyectoCarrito
             {
                 if (string.IsNullOrEmpty(txtFiltroAvanzado.Text))
                 {
+                    lblMensajeError.Text = "Ingrese un filtro para la búsqueda.";
+                    lblMensajeError.Visible = true;
+                    updatePanelMensajeError.Update();
+                    timerMensajeError.Enabled = true;
                     // ("Por favor ingresa un filtro para numéricos");
                     return false;
                 }
                 if (!soloNumeros(txtFiltroAvanzado.Text))
                 {
+                    lblMensajeError.Text = "Por favor ingrese un filtro para numéricos";
+                    lblMensajeError.Visible = true;
+                    updatePanelMensajeError.Update();
+                    timerMensajeError.Enabled = true;
                     //("Solo se aceptan números para filtrar un campo numerico");
                     return false;
                 }
+                int filtroAvanzado;
+                if (int.TryParse(txtFiltroAvanzado.Text, out filtroAvanzado))
+                {
+                    if (filtroAvanzado < 0)
+                    {
+                        lblMensajeError.Text = "El filtro para números no puede ser menor que 0";
+                        lblMensajeError.Visible = true;
+                        updatePanelMensajeError.Update();
+                        timerMensajeError.Enabled = true;
+                        return false;
+                    }
+                }
+
+
             }
             return true;
         }
@@ -448,7 +474,13 @@ namespace ProyectoCarrito
             }
         }
 
-        
-        
+        /*msj */
+        protected void timerMensajeError_Tick(object sender, EventArgs e)
+        {
+            lblMensajeError.Visible = false;
+            timerMensajeError.Enabled = false;
+            updatePanelMensajeError.Update();
+        }
+
     }
 }

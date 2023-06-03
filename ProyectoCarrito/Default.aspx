@@ -13,6 +13,7 @@
         }
 
 
+
         .h1 {
             color: aliceblue;
             margin-bottom: 60px;
@@ -67,7 +68,7 @@
         }
 
         .lbOrden {
-            margin-top: 10px;
+            margin-top: 6px;
             margin-left: 7vh;
             color: whitesmoke;
         }
@@ -173,6 +174,7 @@
                     </div>
                     <%-- Termina filtro avanzado --%>
 
+                  
                    
 
                     <%-- Filtro por rango de precio--%>
@@ -203,7 +205,25 @@
                         <asp:RadioButton class="orden" GroupName="ordenar" ID="rbDescendente" runat="server" Text=" Mayor Precio" AutoPostBack="true" OnCheckedChanged="rbDescendente_CheckedChanged" />
 
                     </div>
+
+
+                      
+
                 </div>
+
+                <asp:UpdatePanel ID="updatePanelMensajeError" runat="server" UpdateMode="Conditional">
+                                    <contenttemplate>
+
+                                     
+                                        <div Class="alert" style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-top:2vh;">
+                                             <i class="fa-solid fa-circle-exclamation fa-xl" style="color: #ff8040; margin-top:2vh; <% if (!lblMensajeError.Visible) { %>display: none;<% } %>"></i>
+                                            
+                                            <asp:Label ID="lblMensajeError" runat="server"  Visible="false" CssClass="alert d-flex align-items-center" Style="margin-top: 1vh; color: orange;"></asp:Label>
+                                            <asp:Timer ID="timerMensajeError" runat="server" Interval="3000" OnTick="timerMensajeError_Tick" Enabled="false"></asp:Timer>
+                                        </div>
+
+                                    </contenttemplate>
+                                </asp:UpdatePanel>
                 <%-- Estilo filtros --%>
             
            
