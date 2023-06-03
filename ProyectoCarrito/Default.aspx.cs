@@ -243,6 +243,7 @@ namespace ProyectoCarrito
                 //("Debe seleccionar un campo y un criterio de búsqueda.", "Error de selección", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+            
             if (ddlCampo.SelectedItem.ToString() == "Precio")
             {
                 if (string.IsNullOrEmpty(txtFiltroAvanzado.Text))
@@ -273,6 +274,21 @@ namespace ProyectoCarrito
                         updatePanelMensajeError.Update();
                         timerMensajeError.Enabled = true;
                         return false;
+                    }
+                }
+                if(ddlCriterio.SelectedItem.ToString()=="Menor a")
+                {
+                    if(int.TryParse(txtFiltroAvanzado.Text, out filtroAvanzado))
+                    {
+                        if (filtroAvanzado == 0)
+                        {
+                            lblMensajeError.Text = "El filtro para números no puede ser menor que 0";
+                            lblMensajeError.Visible = true;
+                            updatePanelMensajeError.Update();
+                            timerMensajeError.Enabled = true;
+                            return false;
+                        }
+                        
                     }
                 }
 
