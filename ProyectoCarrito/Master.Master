@@ -222,7 +222,7 @@
     body {
         /*background-color: #170b2a;*/
         /*background-color: #8a8eab;*/
-        background-color: grey;
+        background-color: #778899;
           
     }
 
