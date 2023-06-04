@@ -66,11 +66,6 @@ namespace ProyectoCarrito
                     imgImagen.Attributes["onerror"] = "this.onerror=null;this.src='" + urlImagenReemplazo + "';";
             
 
-                    
-                
-             
-
-
 
                 Label lblCantidad = (Label)e.Item.FindControl("lblCantidad");
 

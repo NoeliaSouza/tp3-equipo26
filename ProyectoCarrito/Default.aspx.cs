@@ -294,6 +294,21 @@ namespace ProyectoCarrito
 
 
             }
+
+            if (ddlCampo.SelectedItem.ToString() == "Nombre")
+            {
+                if (string.IsNullOrEmpty(txtFiltroAvanzado.Text))
+                {
+                    lblMensajeError.Text = "Ingrese un filtro para la búsqueda.";
+                    lblMensajeError.Visible = true;
+                    updatePanelMensajeError.Update();
+                    timerMensajeError.Enabled = true;
+                    return false;
+                }
+                
+            }
+
+
             return true;
         }
 

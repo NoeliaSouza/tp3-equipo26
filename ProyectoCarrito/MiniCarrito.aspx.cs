@@ -70,7 +70,7 @@ namespace ProyectoCarrito
                     int cantidad = carrito.ObtenerCantidadArticulo(art.Id);
                     lblCantidad.Text = cantidad.ToString();
                 }
-                updatePanelCarrito.Update();
+                //updatePanelCarrito.Update();
 
             }
 
@@ -98,7 +98,7 @@ namespace ProyectoCarrito
 
             Session["Carrito"] = carrito;
 
-            updatePanelCarrito.Update();
+           // updatePanelCarrito.Update();
 
            
 
@@ -119,7 +119,7 @@ namespace ProyectoCarrito
 
             Session["Carrito"] = carrito;
 
-            updatePanelCarrito.Update();
+           // updatePanelCarrito.Update();
 
            
         }

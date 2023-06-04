@@ -87,6 +87,9 @@
             align-items: center;
             width: 75%;
         }
+
+       
+
     </style>
 
 
@@ -117,7 +120,7 @@
 
                     </div>
 
-                    <img src="img/logomaximarket.png" style="width:90%;" />
+                    <img src="img/logomaximarket.png" style="width: 90%;" />
 
                     <%-- Termina filtro comun --%>
 
@@ -232,42 +235,43 @@
 
 
     <%-- Cards --%>
-    <div class="cards-container">
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <h1 class="h1">Nuestros Articulos</h1>
+    <asp:UpdatePanel ID="panel1" runat="server" OnLoad="panel1_Load">
+        <ContentTemplate>
+            <div class="cards-container">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <h1 class="h1">Nuestros Articulos</h1>
 
-            <%-- Repeater --%>
-            <div class="row row-cols-3">
+                    <%-- Repeater --%>
+                    <div class="row row-cols-3">
 
-                <asp:Repeater ID="repRepetidor" runat="server" OnItemDataBound="repRepetidor_ItemDataBound">
-                    <ItemTemplate>
-                        <div class="col">
-                            <div class="card">
-                                <asp:Image ID="imgImagen" class="card-img-top" runat="server" CssClass="card-img-top" Style="height: 300px auto;" />
-                                <div class="card-body">
-                                    <h5 class="card-title"><%# Eval("Nombre") %> </h5>
-                                    <p class="card-text"><%# Eval("CodigoArticulo")%></p>
-                                    <p class="card-text">$<%# Eval("Precio")%></p>
-                                    <%-- Ver detalleeeeeeeeeeeeeeeeeeeeeeeeeeeee --%>
-                                    <%--<a href="DetalleArticulo.aspx?id=<%# Eval("Id") %>" class="btn btn-primary">Ver detalle</a>--%>
-                                    <%-- Agregar al carrito --%>
-                                    <%--<a href="#" class="btn btn-success">Agregar al carrito</a>--%>
-                                    <asp:UpdatePanel ID="panel1" runat="server" OnLoad="panel1_Load">
-                                        <ContentTemplate>
-                                            <asp:Button Text="Ver Detalle" ID="btnDetalle" CssClass="btn btn-primary" runat="server" OnClick="btnDetalle_Click" CommandArgument='<%#Eval("Id")%>' />
-                                            <asp:Button Text="Agregar al carrito" ID="btnEjemplo" CssClass="btn btn-success" runat="server" OnClick="btnAgregarCarrito_Click" CommandArgument='<%# Eval("Id") %>' />
-                                        </ContentTemplate>
+                        <asp:Repeater ID="repRepetidor" runat="server" OnItemDataBound="repRepetidor_ItemDataBound">
+                            <ItemTemplate>
+                                <div class="col">
+                                    <div class="card">
+                                        <asp:Image ID="imgImagen" class="card-img-top" runat="server" CssClass="card-img-top" Style="height: 300px auto;" />
+                                        <div class="card-body">
+                                            <h5 class="card-title"><%# Eval("Nombre") %> </h5>
+                                            <p class="card-text"><%# Eval("CodigoArticulo")%></p>
+                                            <p class="card-text">$<%# Eval("Precio")%></p>
+                                            <%-- Ver detalleeeeeeeeeeeeeeeeeeeeeeeeeeeee --%>
+                                            <%--<a href="DetalleArticulo.aspx?id=<%# Eval("Id") %>" class="btn btn-primary">Ver detalle</a>--%>
+                                            <%-- Agregar al carrito --%>
+                                            <%--<a href="#" class="btn btn-success">Agregar al carrito</a>--%>
 
-                                    </asp:UpdatePanel>
+                                            <asp:Button Text="Ver Detalle" ID="btnDetalle" CssClass="btn btn-dark green-text"  runat="server" OnClick="btnDetalle_Click" CommandArgument='<%#Eval("Id")%>' />
+                                            <asp:Button Text="Agregar al carrito" ID="btnEjemplo" CssClass="btn btn-success btnAgregar" runat="server" OnClick="btnAgregarCarrito_Click" CommandArgument='<%# Eval("Id") %>' />
+
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </ItemTemplate>
-                </asp:Repeater>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        </ContentTemplate>
 
+    </asp:UpdatePanel>
 
 
 
@@ -284,6 +288,13 @@
         .row {
             --bs-gutter-y: 1.5rem;
         }
+
+        .green-text{
+            color:#03fa6e;
+        }
+         
+      
+
     </style>
 
 

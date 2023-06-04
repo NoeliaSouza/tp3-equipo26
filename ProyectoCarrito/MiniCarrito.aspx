@@ -33,7 +33,6 @@
                     <asp:Repeater ID="repCarrito" runat="server" OnItemDataBound="repCarrito_ItemDataBound">
                         <ItemTemplate>
 
-
                             <div class="card mb-3 text-bg-dark p-3" style="max-width: 360px;">
                                 <div class="row g-0">
                                     <div class="col-md-4">
@@ -46,8 +45,6 @@
                                             <h6 class="card-title">$<%# Eval("Precio") %></h6>
                                             <div class="botonesYcantidad">
 
-
-
                                                 <%-- PASAMOS LOS ID COMO ARGUMENTO A LOS BOTONES PARA QUE ENCUENTRE LOS ARTICULOS QUE TIENE Q RESTAR O SUMAR --%>
                                                 <asp:Button ID="btnRestar" Text="-" runat="server" CssClass="btn btn-light" OnClick="restarArticulo_Click" CommandArgument='<%#Eval("Id")%>' />
                                                 <p>
@@ -55,9 +52,6 @@
                                             <asp:Label ID="lblCantidad" runat="server"></asp:Label>
                                                 </p>
                                                 <asp:Button ID="btnSumar" Text="+" runat="server" CssClass="btn btn-light" OnClick="sumarArticulo_Click" CommandArgument='<%#Eval("Id")%>' />
-
-
-
                                             </div>
                                         </div>
                                     </div>
