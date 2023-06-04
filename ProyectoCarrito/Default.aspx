@@ -50,12 +50,12 @@
         }
 
         .cards-container {
-            width: 90%;
+            width: 100%;
             float: right;
         }
 
         .estiloFiltros {
-            margin-top:30vh;
+            margin-top: 30vh;
         }
 
         .filtrosAv {
@@ -75,7 +75,6 @@
 
         .ordenarLista {
             color: whitesmoke;
-           
             margin-left: 7vh;
             margin-top: 0px;
             padding-left: 0px;
@@ -88,8 +87,6 @@
             align-items: center;
             width: 75%;
         }
-
-        
     </style>
 
 
@@ -120,7 +117,7 @@
 
                     </div>
 
-                   
+
                     <%-- Termina filtro comun --%>
 
 
@@ -174,8 +171,8 @@
                     </div>
                     <%-- Termina filtro avanzado --%>
 
-                  
-                   
+
+
 
                     <%-- Filtro por rango de precio--%>
                     <br />
@@ -207,26 +204,24 @@
                     </div>
 
 
-                      
+
 
                 </div>
 
                 <asp:UpdatePanel ID="updatePanelMensajeError" runat="server" UpdateMode="Conditional">
-                                    <contenttemplate>
+                    <ContentTemplate>
 
-                                     
-                                        <div Class="alert" style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-top:2vh;">
-                                             <i class="fa-solid fa-circle-exclamation fa-xl" style="color: #ff8040; margin-top:2vh; <% if (!lblMensajeError.Visible) { %>display: none;<% } %>"></i>
-                                            
-                                            <asp:Label ID="lblMensajeError" runat="server"  Visible="false" CssClass="alert d-flex align-items-center" Style="margin-top: 1vh; color: orange;"></asp:Label>
-                                            <asp:Timer ID="timerMensajeError" runat="server" Interval="3000" OnTick="timerMensajeError_Tick" Enabled="false"></asp:Timer>
-                                        </div>
 
-                                    </contenttemplate>
-                                </asp:UpdatePanel>
+                        <div class="alert" style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: 2vh;">
+                            <i class="fa-solid fa-circle-exclamation fa-xl" style="color: #ff8040; margin-top: 2vh; <% if (!lblMensajeError.Visible) { %>display: none; <% } %>"></i>
+
+                            <asp:Label ID="lblMensajeError" runat="server" Visible="false" CssClass="alert d-flex align-items-center" Style="margin-top: 1vh; color: orange;"></asp:Label>
+                            <asp:Timer ID="timerMensajeError" runat="server" Interval="3000" OnTick="timerMensajeError_Tick" Enabled="false"></asp:Timer>
+                        </div>
+
+                    </ContentTemplate>
+                </asp:UpdatePanel>
                 <%-- Estilo filtros --%>
-            
-           
             </ContentTemplate>
         </asp:UpdatePanel>
         <%-- Terminan filtros --%>
@@ -234,43 +229,44 @@
 
 
 
-    <asp:UpdatePanel ID="panel1" runat="server" OnLoad="panel1_Load">
-        <ContentTemplate>
-            <%-- Cards --%>
-            <div class="cards-container">
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <h1 class="h1">Nuestros Articulos</h1>
 
-                    <%-- Repeater --%>
-                    <div class="row row-cols-3">
+    <%-- Cards --%>
+    <div class="cards-container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <h1 class="h1">Nuestros Articulos</h1>
 
-                        <asp:Repeater ID="repRepetidor" runat="server" OnItemDataBound="repRepetidor_ItemDataBound">
-                            <ItemTemplate>
-                                <div class="col">
-                                    <div class="card">
-                                        <asp:Image ID="imgImagen" class="card-img-top" runat="server" CssClass="card-img-top" Style="height: 300px auto;" />
-                                        <div class="card-body">
-                                            <h5 class="card-title"><%# Eval("Nombre") %> </h5>
-                                            <p class="card-text"><%# Eval("CodigoArticulo")%></p>
-                                            <p class="card-text">$<%# Eval("Precio")%></p>
-                                            <%-- Ver detalleeeeeeeeeeeeeeeeeeeeeeeeeeeee --%>
-                                            <%--<a href="DetalleArticulo.aspx?id=<%# Eval("Id") %>" class="btn btn-primary">Ver detalle</a>--%>
-                                            <%-- Agregar al carrito --%>
-                                            <%--<a href="#" class="btn btn-success">Agregar al carrito</a>--%>
+            <%-- Repeater --%>
+            <div class="row row-cols-3">
+
+                <asp:Repeater ID="repRepetidor" runat="server" OnItemDataBound="repRepetidor_ItemDataBound">
+                    <ItemTemplate>
+                        <div class="col">
+                            <div class="card">
+                                <asp:Image ID="imgImagen" class="card-img-top" runat="server" CssClass="card-img-top" Style="height: 300px auto;" />
+                                <div class="card-body">
+                                    <h5 class="card-title"><%# Eval("Nombre") %> </h5>
+                                    <p class="card-text"><%# Eval("CodigoArticulo")%></p>
+                                    <p class="card-text">$<%# Eval("Precio")%></p>
+                                    <%-- Ver detalleeeeeeeeeeeeeeeeeeeeeeeeeeeee --%>
+                                    <%--<a href="DetalleArticulo.aspx?id=<%# Eval("Id") %>" class="btn btn-primary">Ver detalle</a>--%>
+                                    <%-- Agregar al carrito --%>
+                                    <%--<a href="#" class="btn btn-success">Agregar al carrito</a>--%>
+                                    <asp:UpdatePanel ID="panel1" runat="server" OnLoad="panel1_Load">
+                                        <ContentTemplate>
                                             <asp:Button Text="Ver Detalle" ID="btnDetalle" CssClass="btn btn-primary" runat="server" OnClick="btnDetalle_Click" CommandArgument='<%#Eval("Id")%>' />
                                             <asp:Button Text="Agregar al carrito" ID="btnEjemplo" CssClass="btn btn-success" runat="server" OnClick="btnAgregarCarrito_Click" CommandArgument='<%# Eval("Id") %>' />
+                                        </ContentTemplate>
 
-                                        </div>
-                                    </div>
+                                    </asp:UpdatePanel>
                                 </div>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </div>
-                </div>
+                            </div>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
             </div>
-        </ContentTemplate>
+        </div>
+    </div>
 
-    </asp:UpdatePanel>
 
 
 
@@ -287,8 +283,6 @@
         .row {
             --bs-gutter-y: 1.5rem;
         }
-
-         
     </style>
 
 

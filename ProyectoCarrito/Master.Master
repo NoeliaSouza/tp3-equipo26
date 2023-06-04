@@ -33,7 +33,7 @@
 
 
      <% if (Request.Url.AbsolutePath.EndsWith("Listado.aspx"))
-        { %>
+         { %>
     <%
         MostrarCarrito = true;
     %>
@@ -68,7 +68,7 @@
                                 <a class="nav-link active text-white" aria-current="page" href="Default.aspx">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active text-white" aria-current="page" href="Listado.aspx" style="margin-right: 25px;">Carrito</a>
+                                <a class="nav-link active text-white" aria-current="page" href="Listado.aspx" ">Carrito</a>
                             </li>
 
                             <%--SOLO MOSTRAMOS FILTROS AVANZADOS SI ESTAMOS EN DEFAULT--%>
@@ -88,7 +88,7 @@
                         <%--  filtro--%>
 
                         <div class="buscar">
-                            <asp:TextBox runat="server" ID="txtBuscador" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                            <asp:TextBox runat="server" ID="txtBuscador" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" onkeydown="return enter(event)">
                             </asp:TextBox>
                         </div>
                         <asp:LinkButton Text="Buscar" runat="server" ID="btnBuscar" CssClass="btn btn-outline-light" OnClick="btnBuscar_Click">
@@ -96,7 +96,7 @@
                         </asp:LinkButton>
 
 
-                        <<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                         <asp:UpdatePanel ID="panelContador" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
                                 <%-- Icono Carrito --%>
@@ -105,13 +105,17 @@
                                    <%if (MostrarCarrito == false)
                                        {
                                            %>
-                                    <a class="nav-link active text-white" aria-current="page" href="#" onclick="desplazarCarrito(event)">
+                                   
+                                     <a class="nav-link active text-white" aria-current="page" href="#" onclick="desplazarCarrito(event)">
                                       
                                         
                                         <i id="iconoCarrito" class="fas fa-shopping-cart"></i>
                                         <span id="txtCarrito">Carrito </span>
                                         <asp:Label ID="lblTotalCantCarrito" runat="server"></asp:Label>
                                     </a>
+
+                                  
+                                  
                                     <%} %>
                                 </div>
                             </ContentTemplate>
@@ -223,11 +227,10 @@
         /*background-color: #170b2a;*/
         /*background-color: #8a8eab;*/
         background-color: #778899;
-          
     }
 
-    
-    
+
+
     .buscar {
         margin-right: 1rem;
         width: 25%;
@@ -236,7 +239,7 @@
 
     /* Barra mini carrito */
     .mini-cart-container {
-        width: 80%;
+        width: 85%;
         height: 100%;
         position: fixed;
         top: 0;
@@ -281,6 +284,13 @@
     .fa-beat {
         animation: fa-beat 1s infinite;
     }
+
+    /*prioridad barra carrito*/
+
+   
+
+
+
 </style>
 
 
@@ -318,6 +328,7 @@
         } else {
             miniCartContainer.style.display = 'block';
             miniCartContainer.style.transform = 'translateX(20)';
+         
         }
 
         miniCartContainer.classList.toggle('active');
@@ -333,6 +344,7 @@
             var miniCartContainer = document.getElementById('miniCartContainer');
             miniCartContainer.style.display = 'none';
             miniCartContainer.classList.remove('active');
+            
         }
     });
 
@@ -356,7 +368,14 @@
         return false;
     }
 
-
+    //enter
+    function enter(event) {
+        if (event.keyCode === 13) { // 13 es el codigo de la tecla enter
+            event.preventDefault();
+            document.getElementById('<%= btnBuscar.ClientID %>').click(); // llamamos al click
+            return false;
+        }
+    }
 
 
 

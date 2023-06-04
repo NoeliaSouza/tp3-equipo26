@@ -4,12 +4,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
-        .titulo{
-            margin-left:12vh;
+        .titulo {
+            margin-left: 12vh;
         }
-        .containerPrincipal{
-            margin-top:3vh;
-            margin-left:1vh;
+
+        .containerPrincipal {
+            margin-top: 2vh;
+            margin-left: 1vh;
         }
     </style>
 
@@ -24,6 +25,7 @@
             <asp:UpdatePanel ID="panelCarrito" runat="server" OnLoad="panelCarrito_Load">
                 <ContentTemplate>--%>
         <%--<asp:ScriptManager ID="script1" runat="server"></asp:ScriptManager>--%>
+
         <asp:UpdatePanel ID="updatePanelCarrito" runat="server" UpdateMode="Conditional">
 
             <ContentTemplate>
@@ -44,6 +46,8 @@
                                             <h6 class="card-title">$<%# Eval("Precio") %></h6>
                                             <div class="botonesYcantidad">
 
+
+
                                                 <%-- PASAMOS LOS ID COMO ARGUMENTO A LOS BOTONES PARA QUE ENCUENTRE LOS ARTICULOS QUE TIENE Q RESTAR O SUMAR --%>
                                                 <asp:Button ID="btnRestar" Text="-" runat="server" CssClass="btn btn-light" OnClick="restarArticulo_Click" CommandArgument='<%#Eval("Id")%>' />
                                                 <p>
@@ -51,6 +55,7 @@
                                             <asp:Label ID="lblCantidad" runat="server"></asp:Label>
                                                 </p>
                                                 <asp:Button ID="btnSumar" Text="+" runat="server" CssClass="btn btn-light" OnClick="sumarArticulo_Click" CommandArgument='<%#Eval("Id")%>' />
+
 
 
                                             </div>
@@ -64,7 +69,9 @@
 
                 </div>
                 <div class="card mb-3 text-bg-dark p-3" style="max-width: 360px;">
+
                     <h4>Total: $<asp:Label ID="lblPrecioTotal" runat="server" Text=""></asp:Label></h4>
+
                     <asp:Button Text="Pagar" CssClass="btn btn-light" runat="server" OnClientClick="return redirectToPage('Listado.aspx');" />
                 </div>
             </ContentTemplate>
@@ -74,7 +81,7 @@
 
 
 
-    
+
 
 
     <%-- css --%>
@@ -104,7 +111,6 @@
 
         .card.mb-3 {
             display: flex;
-
         }
 
             .card.mb-3 .col-md-4 {
@@ -138,10 +144,10 @@
         //redireccion a listado
         function redirectToPage(url) {
             parent.location.href = url;
-            return false; 
+            return false;
         }
 
-        
+
 
 
         //este agrego para que no tener que recargar la pagina para el evento abrir y cerrar
@@ -165,7 +171,7 @@
             asignarEventos();
         });
 
-        
+
 
     </script>
 

@@ -28,6 +28,11 @@ namespace ProyectoCarrito
                     lblPrecioTotal.Text = carrito.PrecioTotal.ToString();
                 }
 
+
+
+
+
+
             }
 
           
@@ -52,13 +57,23 @@ namespace ProyectoCarrito
                 System.Web.UI.WebControls.Image imgImagen = (System.Web.UI.WebControls.Image)e.Item.FindControl("imgImagen");
 
                 /* Place holder si la imagen original falla */
-                string urlImagenOriginal = art.Imagenes[0].UrlImagen;
-                string urlImagenReemplazo = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
 
-                imgImagen.ImageUrl = urlImagenOriginal;
-                imgImagen.Attributes["onerror"] = "this.onerror=null;this.src='" + urlImagenReemplazo + "';";
+              
+                    string urlImagenOriginal = art.Imagenes[0].UrlImagen;
+                    string urlImagenReemplazo = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
+
+                    imgImagen.ImageUrl = urlImagenOriginal;
+                    imgImagen.Attributes["onerror"] = "this.onerror=null;this.src='" + urlImagenReemplazo + "';";
+            
+
+                    
+                
+             
+
+
 
                 Label lblCantidad = (Label)e.Item.FindControl("lblCantidad");
+
                 if(art!=null && lblCantidad!=null && Session["Carrito"] is Carrito carrito)
                 {
                     int cantidad = carrito.ObtenerCantidadArticulo(art.Id);
@@ -74,7 +89,7 @@ namespace ProyectoCarrito
             
             
             }
-            updatePanelCarrito.Update();
+            //updatePanelCarrito.Update();
         }
         //SUMAR Y RESTAR ART. DEL CARRITO
         protected void btnRestar_Click(object sender, EventArgs e)

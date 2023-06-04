@@ -130,6 +130,10 @@ namespace ProyectoCarrito
 
             Carrito carrito = (Carrito)Session["Carrito"];
 
+            if (carrito == null)
+            {
+                Response.Redirect("Default.aspx");
+            }
 
             repCarrito.DataSource = carrito.ListaArticulo;
             repCarrito.DataBind();
