@@ -66,7 +66,8 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="DetalleArticulo.aspx" />
-    <Content Include="Listado.aspx" />
+    <Content Include="img\logomaximarket.png" />
+    <Content Include="Carrito.aspx" />
     <Content Include="MiniCarrito.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -85,12 +86,12 @@
     <Compile Include="DetalleArticulo.aspx.designer.cs">
       <DependentUpon>DetalleArticulo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Listado.aspx.cs">
-      <DependentUpon>Listado.aspx</DependentUpon>
+    <Compile Include="Carrito.aspx.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Listado.aspx.designer.cs">
-      <DependentUpon>Listado.aspx</DependentUpon>
+    <Compile Include="Carrito.aspx.designer.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
     </Compile>
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>

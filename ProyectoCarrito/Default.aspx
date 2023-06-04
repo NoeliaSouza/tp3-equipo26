@@ -55,7 +55,7 @@
         }
 
         .estiloFiltros {
-            margin-top: 30vh;
+            margin-top: 10vh;
         }
 
         .filtrosAv {
@@ -117,6 +117,7 @@
 
                     </div>
 
+                    <img src="img/logomaximarket.png" style="width:90%;" />
 
                     <%-- Termina filtro comun --%>
 
@@ -309,7 +310,7 @@
 
 
         function redirectToListado() {
-            window.location.href = "Listado.aspx";
+            window.location.href = "Carrito.aspx";
         }
 
 

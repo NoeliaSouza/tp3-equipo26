@@ -6,6 +6,7 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Maxi Market</title>
+        <link rel="icon" href="img/icono.png" type="image/png" sizes="60x60"/>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <%-- Css --%>
@@ -32,7 +33,7 @@
     <% } %>
 
 
-     <% if (Request.Url.AbsolutePath.EndsWith("Listado.aspx"))
+     <% if (Request.Url.AbsolutePath.EndsWith("Carrito.aspx"))
          { %>
     <%
         MostrarCarrito = true;
@@ -68,7 +69,7 @@
                                 <a class="nav-link active text-white" aria-current="page" href="Default.aspx">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active text-white" aria-current="page" href="Listado.aspx" ">Carrito</a>
+                                <a class="nav-link active text-white" aria-current="page" href="Carrito.aspx" ">Carrito</a>
                             </li>
 
                             <%--SOLO MOSTRAMOS FILTROS AVANZADOS SI ESTAMOS EN DEFAULT--%>
@@ -77,6 +78,7 @@
 
                             %>
                             <li class="nav-item">
+                                
                                 <a class="nav-link active text-white" runat="server" id="filtroAvanzado" aria-current="page" href="Default.aspx" style="margin-right: 25px;" onclick="return toggleFiltros();">Filtros avanzados</a>
                             </li>
                             <%} %>
@@ -105,7 +107,12 @@
                                    <%if (MostrarCarrito == false)
                                        {
                                            %>
+                                     
+
                                    
+
+
+
                                      <a class="nav-link active text-white" aria-current="page" href="#" onclick="desplazarCarrito(event)">
                                       
                                         
@@ -286,11 +293,6 @@
     }
 
     /*prioridad barra carrito*/
-
-   
-
-
-
 </style>
 
 
@@ -328,7 +330,7 @@
         } else {
             miniCartContainer.style.display = 'block';
             miniCartContainer.style.transform = 'translateX(20)';
-         
+
         }
 
         miniCartContainer.classList.toggle('active');
@@ -344,7 +346,7 @@
             var miniCartContainer = document.getElementById('miniCartContainer');
             miniCartContainer.style.display = 'none';
             miniCartContainer.classList.remove('active');
-            
+
         }
     });
 

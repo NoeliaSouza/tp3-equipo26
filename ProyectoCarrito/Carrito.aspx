@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Listado.aspx.cs" Inherits="ProyectoCarrito.Listado" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Carrito.aspx.cs" Inherits="ProyectoCarrito.Listado" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -88,7 +88,9 @@
                             <div class="col-md-12">
                                 <div class="card-body d-flex">
                                     <div class="col-md-2">
-                                        <asp:Image ID="imgImagen" runat="server" CssClass="img-fluid rounded-start" Style="max-height: 15vh; width: 100%;" />
+                                        <asp:HyperLink ID="hlImagen" runat="server" NavigateUrl='<%# "DetalleArticulo.aspx?id=" + Eval("Id") %>'>
+                                            <asp:Image ID="imgImagen" runat="server" CssClass="img-fluid rounded-start" Style="max-height: 15vh; width: 100%;" />
+                                        </asp:HyperLink>
                                     </div>
                                     <div class="col-md-2 itemsCarrito">
                                         <p class="card-text"><%# Eval("Nombre") %></p>
