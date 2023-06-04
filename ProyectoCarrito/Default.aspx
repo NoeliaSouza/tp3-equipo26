@@ -171,6 +171,11 @@
                                 <asp:Button Text="Buscar" runat="server" ID="btnBuscar" CssClass="btn btn-outline-light form-control " OnClick="btnBuscar_Click" />
 
                             </div>
+                            <div class="mb-3">
+                                <asp:Button Text="Quitar filtros" runat="server" ID="BtnQuitarFiltro" CssClass="btn btn-outline-light form-control" OnClick="BtnQuitarFiltro_Click"  />
+
+                            </div>
+
                         </div>
                     </div>
                     <%-- Termina filtro avanzado --%>
@@ -179,7 +184,7 @@
 
 
                     <%-- Filtro por rango de precio--%>
-                    <br />
+                    <%--<br />--%>
                     <%--<div class="lineaDivisoria"></div>
                     <br />
                     <div class="rango">
@@ -192,7 +197,7 @@
                         <asp:Button Style="margin-top: 15px;" Text="Buscar" runat="server" ID="btnRango" CssClass="btn btn-outline-light" type="submit" OnClick="btnRango_Click" />
                     </div>--%>
 
-                    <br />
+                    <%--<br />--%>
 
                     <%-- Ordenar la lista mostrada segun criterio--%>
                     <label class="lbOrden">Ordenar por: </label>

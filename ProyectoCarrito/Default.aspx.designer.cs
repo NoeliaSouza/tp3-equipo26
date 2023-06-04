@@ -87,6 +87,15 @@ namespace ProyectoCarrito
         protected global::System.Web.UI.WebControls.Button btnBuscar;
 
         /// <summary>
+        /// Control BtnQuitarFiltro.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnQuitarFiltro;
+
+        /// <summary>
         /// Control rbRelevancia.
         /// </summary>
         /// <remarks>

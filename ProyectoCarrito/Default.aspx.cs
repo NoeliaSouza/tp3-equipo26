@@ -513,5 +513,17 @@ namespace ProyectoCarrito
             updatePanelMensajeError.Update();
         }
 
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void BtnQuitarFiltro_Click(object sender, EventArgs e)
+        {
+            Session["ListaActiva"] = Session["ListaArticulo"];
+            repRepetidor.DataSource = Session["ListaArticulo"];
+
+            repRepetidor.DataBind();
+        }
     }
 }
