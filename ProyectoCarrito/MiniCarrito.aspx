@@ -131,6 +131,10 @@
             .botonesYcantidad p {
                 margin: 0 10px;
             }
+
+        #footer {
+            display:none;
+        } 
     </style>
 
     <script>

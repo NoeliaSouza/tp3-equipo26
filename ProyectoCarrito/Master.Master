@@ -45,6 +45,20 @@
         MostrarCarrito = false;
     %>
     <% } %>
+
+    <style>
+        #footer {
+            position: relative;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+           
+            background-color: black;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -143,22 +157,19 @@
         </asp:ContentPlaceHolder>
 
         <%-- Mensaje Art. agregado --%>
-        <div id="mensajeCarritoo" >
-           
+        <div id="mensajeCarritoo">
         </div>
 
         <br />
         <br />
         <br />
 
-        <div class="container">
-            <div>
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
-                </asp:ContentPlaceHolder>
-            </div>
-        </div>
 
-        <div class="container">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+        </asp:ContentPlaceHolder>
+
+
+        <div class="container" id="content">
             <div>
 
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
@@ -171,6 +182,36 @@
 
 
 
+    <div id="footer">
+       
+
+            <footer class="bg-dark text-center text-white">
+                <!-- Grid container -->
+                <div class="container p-4 pb-0">
+                    <!-- Section: Social media -->
+                    <section class="mb-4">
+                         
+                        <h3>GitHubs del Equipo</h3>
+                        <!-- Github -->
+                        <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/joacoaldun?tab=repositories" role="button"> Joaquín Alduncin   <i class="fab fa-github"></i></a>
+                         <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/NoeliaSouza?tab=repositories" role="button"> Noelia Afonso De Souza   <i class="fab fa-github"></i></a>
+                         <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/JuanLorenzo89?tab=repositories" role="button"> Juan Palbo Lorenzo   <i class="fab fa-github"></i></a>
+                    </section>
+                    <!-- Section: Social media -->
+                </div>
+                <!-- Grid container -->
+
+               
+                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                    © 2023 Copyright: Equipo 26- Joaquín Alduncin, Noelia Afonso de Souza, Juan Pablo Lorenzo.
+    
+                </div>
+                
+            </footer>
+
+        
+    </div>
+
 
     <%-- Javascript --%>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
@@ -180,6 +221,7 @@
 
 
 </body>
+
 </html>
 
 
@@ -235,15 +277,20 @@
         /*background-color: #778899;*/
         /*background-color:#60904a;*/
         /*background-color:black;*/
-        background-image:url("img/fondoWeb.png");
+        background-image: url("img/fondoWeb.png");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
-        
         /*background-image: linear-gradient(to right, #4bb169, #b7b252);*/
     }
 
 
+
+    .container {
+        min-height: 100%;
+        position: relative;
+        padding-bottom: 60px; /* Altura del footer */
+    }
 
     .buscar {
         margin-right: 1rem;
@@ -280,7 +327,7 @@
         z-index: 9999;
     }
 
-   
+
 
     /*Animacion del boton buscar*/
     @keyframes fa-beat {
@@ -304,10 +351,6 @@
     #txtBuscador {
         background-color: black;
     }
-
-
-
-    /*prioridad barra carrito*/
 </style>
 
 
@@ -395,6 +438,17 @@
     }
 
 
+    function adjustContentHeight() {
+        var content = document.getElementById('content');
+        var windowHeight = window.innerHeight;
+        var footerHeight = document.getElementById('footer').offsetHeight;
+        var contentHeight = windowHeight - footerHeight;
+        content.style.minHeight = contentHeight + 'px';
+    }
+
+    window.addEventListener('resize', adjustContentHeight);
+    adjustContentHeight();
+
 
 </script>
 
@@ -414,11 +468,11 @@
         mensaje.textContent = "Artículo agregado";
 
         mensaje.style.display = "block";
-       
+
 
         setTimeout(function () {
             mensaje.style.display = "none";
-            
+
         }, 4000);
 
 

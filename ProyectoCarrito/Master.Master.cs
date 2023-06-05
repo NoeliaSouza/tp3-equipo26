@@ -15,7 +15,9 @@ namespace ProyectoCarrito
         public bool MostrarFiltros { get; set; }
 
         public bool MostrarCarrito { get; set; }
-        
+       
+
+
         public bool NavContentVisible
         {
             get { return NavContent.Visible; }
@@ -30,6 +32,7 @@ namespace ProyectoCarrito
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             panelContador.Update();
             try
             {
@@ -54,6 +57,21 @@ namespace ProyectoCarrito
                         lblTotalCantCarrito.Text = " (0)";
                     }
                 }
+
+
+
+
+
+
+                
+
+
+
+
+
+
+
+
             }
 
 
