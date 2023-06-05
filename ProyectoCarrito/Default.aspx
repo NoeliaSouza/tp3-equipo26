@@ -24,6 +24,7 @@
         .filtros {
             /*margin-top:4.5vh;*/
             position: fixed;
+            z-index:2;
             top: 0;
             left: 0;
             height: 100%;
@@ -91,7 +92,12 @@
         .filtros {
             float: left;
             width: 15%;
+             
 
+        }
+
+        .logoMaxi{
+            margin-left:1vh;
         }
 
         .cards-container {
@@ -138,7 +144,7 @@
 
                         </div>
 
-                        <img src="img/logomaximarket.png" style="width: 90%;" />
+                        <img class="logoMaxi" src="img/logomaximarket.png" style="width: 90%; " />
 
                         <%-- Termina filtro comun --%>
 

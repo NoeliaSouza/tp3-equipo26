@@ -185,7 +185,7 @@
     <div id="footer">
        
 
-            <footer class="bg-dark text-center text-white">
+            <footer class=" text-center text-white" >
                 <!-- Grid container -->
                 <div class="container p-4 pb-0">
                     <!-- Section: Social media -->
@@ -351,6 +351,12 @@
     #txtBuscador {
         background-color: black;
     }
+   
+    #footer{
+        background-color:#020202a1;
+    }
+
+   
 </style>
 
 
