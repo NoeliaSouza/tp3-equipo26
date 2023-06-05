@@ -6,7 +6,7 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Maxi Market</title>
-        <link rel="icon" href="img/icono.png" type="image/png" sizes="60x60"/>
+    <link rel="icon" href="img/icono.png" type="image/png" sizes="60x60" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <%-- Css --%>
@@ -33,8 +33,8 @@
     <% } %>
 
 
-     <% if (Request.Url.AbsolutePath.EndsWith("Carrito.aspx"))
-         { %>
+    <% if (Request.Url.AbsolutePath.EndsWith("Carrito.aspx"))
+        { %>
     <%
         MostrarCarrito = true;
     %>
@@ -45,10 +45,6 @@
         MostrarCarrito = false;
     %>
     <% } %>
-
-
-
-
 </head>
 
 <body>
@@ -68,9 +64,9 @@
                             <li class="nav-item">
                                 <a class="nav-link active text-white" aria-current="page" href="Default.aspx">Home</a>
                             </li>
-                            <li class="nav-item">
+                            <%--<li class="nav-item">
                                 <a class="nav-link active text-white" aria-current="page" href="Carrito.aspx" ">Carrito</a>
-                            </li>
+                            </li>--%>
 
                             <%--SOLO MOSTRAMOS FILTROS AVANZADOS SI ESTAMOS EN DEFAULT--%>
                             <%if (MostrarFiltros == true)
@@ -78,7 +74,7 @@
 
                             %>
                             <li class="nav-item">
-                                
+
                                 <a class="nav-link active text-white" runat="server" id="filtroAvanzado" aria-current="page" href="Default.aspx" style="margin-right: 25px;" onclick="return toggleFiltros();">Filtros avanzados</a>
                             </li>
                             <%} %>
@@ -89,6 +85,7 @@
             </form>--%>
                         <%--  filtro--%>
 
+
                         <div class="buscar">
                             <asp:TextBox runat="server" ID="txtBuscador" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" onkeydown="return enter(event)">
                             </asp:TextBox>
@@ -98,31 +95,33 @@
                         </asp:LinkButton>
 
 
+
+
                         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                         <asp:UpdatePanel ID="panelContador" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
                                 <%-- Icono Carrito --%>
                                 <div class="cart-wrapper">
-                                    
-                                   <%if (MostrarCarrito == false)
-                                       {
-                                           %>
-                                     
 
-                                   
+                                    <%if (MostrarCarrito == false)
+                                        {
+                                    %>
 
 
 
-                                     <a class="nav-link active text-white" aria-current="page" href="#" onclick="desplazarCarrito(event)">
-                                      
-                                        
+
+
+
+                                    <a class="nav-link active text-white" aria-current="page" href="#" onclick="desplazarCarrito(event)">
+
+
                                         <i id="iconoCarrito" class="fas fa-shopping-cart"></i>
                                         <span id="txtCarrito">Carrito </span>
                                         <asp:Label ID="lblTotalCantCarrito" runat="server"></asp:Label>
                                     </a>
 
-                                  
-                                  
+
+
                                     <%} %>
                                 </div>
                             </ContentTemplate>
@@ -144,8 +143,8 @@
         </asp:ContentPlaceHolder>
 
         <%-- Mensaje Art. agregado --%>
-        <div id="mensajeCarrito">
-            Artículo agregado al carrito
+        <div id="mensajeCarritoo" >
+           
         </div>
 
         <br />
@@ -170,7 +169,7 @@
         </div>
     </form>
 
-   
+
 
 
     <%-- Javascript --%>
@@ -233,7 +232,15 @@
     body {
         /*background-color: #170b2a;*/
         /*background-color: #8a8eab;*/
-        background-color: #778899;
+        /*background-color: #778899;*/
+        /*background-color:#60904a;*/
+        /*background-color:black;*/
+        background-image:url("img/fondoWeb.png");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        
+        /*background-image: linear-gradient(to right, #4bb169, #b7b252);*/
     }
 
 
@@ -262,7 +269,7 @@
         }
 
     /* Mensaje carrito */
-    #mensajeCarrito {
+    #mensajeCarritoo {
         color: white;
         background-color: green;
         position: fixed;
@@ -272,6 +279,8 @@
         padding: 10px;
         z-index: 9999;
     }
+
+   
 
     /*Animacion del boton buscar*/
     @keyframes fa-beat {
@@ -291,6 +300,12 @@
     .fa-beat {
         animation: fa-beat 1s infinite;
     }
+
+    #txtBuscador {
+        background-color: black;
+    }
+
+
 
     /*prioridad barra carrito*/
 </style>
@@ -395,13 +410,15 @@
         contElementosCesta.textContent = "(" + contCesta + ")";
 
         /* Agregamos mensajito */
-        var mensaje = document.getElementById("mensajeCarrito");
-        mensaje.textContent = "Artículo agregado al carrito";
+        var mensaje = document.getElementById("mensajeCarritoo");
+        mensaje.textContent = "Artículo agregado";
 
         mensaje.style.display = "block";
+       
 
         setTimeout(function () {
             mensaje.style.display = "none";
+            
         }, 4000);
 
 

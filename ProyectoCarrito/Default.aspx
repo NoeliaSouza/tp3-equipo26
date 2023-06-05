@@ -96,6 +96,7 @@
 
         .cards-container {
             margin: 0 auto;
+            margin-top:6vh;
             width: 70%;
         }
 
@@ -261,14 +262,14 @@
             <ContentTemplate>
                 <div class="cards-container">
                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                        <h1 class="h1">Nuestros Articulos</h1>
+                        <%--<h1 class="h1">Nuestros Articulos</h1>--%>
 
                         <%-- Repeater --%>
                         <div class="row row-cols-3">
 
                             <asp:Repeater ID="repRepetidor" runat="server" OnItemDataBound="repRepetidor_ItemDataBound">
                                 <ItemTemplate>
-                                    <div class="col">
+                                    <div class="col text-center" >
                                         <div class="card">
                                             <asp:Image ID="imgImagen" class="card-img-top" runat="server" CssClass="card-img-top" Style="height: 300px auto;" />
                                             <div class="card-body">
@@ -281,7 +282,7 @@
                                                 <%--<a href="#" class="btn btn-success">Agregar al carrito</a>--%>
 
                                                 <asp:Button Text="Ver Detalle" ID="btnDetalle" CssClass="btn btn-dark green-text" runat="server" OnClick="btnDetalle_Click" CommandArgument='<%#Eval("Id")%>' />
-                                                <asp:Button Text="Agregar al carrito" ID="btnEjemplo" CssClass="btn btn-success btnAgregar" runat="server" OnClick="btnAgregarCarrito_Click" CommandArgument='<%# Eval("Id") %>' />
+                                                <asp:Button Text="Agregar al carrito" ID="btnEjemplo" CssClass="btn btn-success btnAgregar btn-pg-1" runat="server" OnClick="btnAgregarCarrito_Click" CommandArgument='<%# Eval("Id") %>' OnClientClick="mostrarMensaje();" />
 
                                             </div>
                                         </div>
@@ -319,11 +320,33 @@
         .green-text {
             color: #03fa6e;
         }
+
+        .btn-success{
+            margin-top:1vh;
+        }
+
+
+        .btn-success, .btn-dark{
+             width:16vh;
+             height:4vh;
+         }
+
     </style>
 
 
     <%-- volvemos a asignar los eventos al click del carrito-master --%>
     <script>
+
+
+        function mostrarMensaje() {
+            var mensajeCarrito = document.getElementById("mensajeCarritoo");
+            mensajeCarrito.innerText = "Artículo agregado al carrito";
+            mensajeCarrito.style.display = "block";
+
+            setTimeout(function () {
+                mensajeCarrito.style.display = "none";
+            }, 4000);
+        }
 
         function toggleFiltros() {
             var filtros = document.getElementById('filtros');

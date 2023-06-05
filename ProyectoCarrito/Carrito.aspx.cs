@@ -25,7 +25,7 @@ namespace ProyectoCarrito
 
                     repCarrito.DataSource = carrito.ListaArticulo;
                     repCarrito.DataBind();
-                    lblPrecioTotal.Text = carrito.PrecioTotal.ToString();
+                    lblPrecioTotal.Text = "$" + carrito.PrecioTotal.ToString();
                 }
 
 
@@ -78,7 +78,7 @@ namespace ProyectoCarrito
                     decimal precio = art.Precio;
                     decimal total = precio * cantidad;
                     Label lblTotalCantXart = (Label)e.Item.FindControl("lblTotalCantXart");
-                    lblTotalCantXart.Text = total.ToString();
+                    lblTotalCantXart.Text = "$" + total.ToString();
                 }
             
             

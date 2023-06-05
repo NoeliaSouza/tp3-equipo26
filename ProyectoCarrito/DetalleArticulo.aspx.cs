@@ -16,20 +16,34 @@ namespace ProyectoCarrito
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (Request.QueryString["id"] != null)
+            if (!IsPostBack)
             {
+                if (Request.QueryString["id"] != null)
+                {
 
-                //TRAIGO DESDE DEFAULT EL ID DEL ARTICULO QUE QUIERO MOSTRAR A TRAVES DEL CLICK EN EL BUTTON
-                int id = int.Parse(Request.QueryString["id"]);
+                    //TRAIGO DESDE DEFAULT EL ID DEL ARTICULO QUE QUIERO MOSTRAR A TRAVES DEL CLICK EN EL BUTTON
+                    int id = int.Parse(Request.QueryString["id"]);
 
-                //GENERO UNA LISTA DE ARTICULOS CON LO QUE HAY EN EL SESSION DE ListaArticulo
+                    //GENERO UNA LISTA DE ARTICULOS CON LO QUE HAY EN EL SESSION DE ListaArticulo
+                    List<Articulo> ListaArticulo = (List<Articulo>)Session["ListaArticulo"];
+
+
+                    //ENCUENTRO EL ID DEL ARTICULO EN LA LISTA Y COPIO EL OBJETO EN EL NUEVO OBJETO ARTICULO
+                    articulo = ListaArticulo.Find(x => x.Id == id);
+                    Session["UltimoIdArticulo"] = id;
+
+                }
+                
+            }
+            else
+            {   //validacion recarga de pag.
+                int ultimoIdArticulo = (int)Session["UltimoIdArticulo"];
                 List<Articulo> ListaArticulo = (List<Articulo>)Session["ListaArticulo"];
-
-
-                //ENCUENTRO EL ID DEL ARTICULO EN LA LISTA Y COPIO EL OBJETO EN EL NUEVO OBJETO ARTICULO
-                articulo = ListaArticulo.Find(x => x.Id == id);
+                articulo = ListaArticulo.Find(x => x.Id == ultimoIdArticulo);
 
             }
+
+
 
         }
 

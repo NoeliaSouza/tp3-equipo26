@@ -58,17 +58,23 @@
         .carousel-control-next {
             border: none; /* Remueve el borde */
             opacity: 0.8; /* Ajusta la opacidad de los botones */
+           
         }
 
         .carousel-control-prev-icon,
         .carousel-control-next-icon {
             background-color: black; /* Cambia el color del ícono a blanco */
+             border-radius:50%;
+             padding:3vh;
         }
 
         .carousel-image {
             height: 500px; /* Ajusta aquí la altura deseada */
             object-fit: fill; /* Ajusta la forma de ajuste de la imagen */
         }
+
+        
+
     </style>
 
     <%-- Carga de imagen --%>
@@ -140,8 +146,8 @@
                                     <p><span class="label">Precio:</span> <%:"$" + articulo.Precio %></p>
                                 </div>
                                 <div class="add-to-cart">
-                                    <asp:Button Text="Agregar al carrito" ID="btnAgregar" CssClass="btn btn-success" runat="server" OnClick="btnAgregar_Click" />
-                                    <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-primary" Text="Volver atras" OnClick="btnVolver_Click" />
+                                    <asp:Button Text="Agregar al carrito" ID="btnAgregar" CssClass="btn btn-success" runat="server" OnClick="btnAgregar_Click" OnClientClick="mostrarMensaje();" />
+                                    <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-dark green-text" Text="Volver atras" OnClick="btnVolver_Click" />
                                 </div>
                             </div>
                         </div>
@@ -185,4 +191,34 @@
     </div>
 
     <%  } %>
+
+
+
+    <style>
+
+         .green-text {
+            color: #03fa6e;
+            background-color:black;
+            
+        }
+
+         .btn-success, .btn-dark{
+             width:16vh;
+             height:4vh;
+         }
+         .btn-success{
+             margin-right:1vh;
+         }
+    </style>
+    <script>
+        function mostrarMensaje() {
+            var mensajeCarrito = document.getElementById("mensajeCarritoo");
+            mensajeCarrito.innerText = "Artículo agregado al carrito";
+            mensajeCarrito.style.display = "block";
+
+            setTimeout(function () {
+                mensajeCarrito.style.display = "none";
+            }, 4000);
+        }
+    </script>
 </asp:Content>
