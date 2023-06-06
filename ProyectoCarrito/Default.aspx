@@ -29,6 +29,7 @@
             left: 0;
             height: 100%;
             background-color: black;
+
         }
 
         .busquedaAvanzada {
@@ -275,7 +276,7 @@
 
                             <asp:Repeater ID="repRepetidor" runat="server" OnItemDataBound="repRepetidor_ItemDataBound">
                                 <ItemTemplate>
-                                    <div class="col text-center" >
+                                    <div class="col col-12  col-md-6 col-lg-4 text-center  " >
                                         <div class="card">
                                             <asp:Image ID="imgImagen" class="card-img-top" runat="server" CssClass="card-img-top" Style="height: 300px auto;" />
                                             <div class="card-body">
@@ -317,7 +318,29 @@
                 flex: 0 0 auto;
                 width: 100%;
             }
+           
         }
+
+
+
+        @media (max-width:992px){
+
+             .filtros {
+            width: 40%;
+            }
+            .cards-container {
+            
+           /* width: 70%;*/
+            }
+
+       /* .containerDerecha {
+            float: right;
+            width: 5%;
+        }*/
+
+
+        }
+
 
         .row {
             --bs-gutter-y: 1.5rem;

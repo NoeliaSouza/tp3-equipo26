@@ -12,6 +12,11 @@
             margin-top: 2vh;
             margin-left: 1vh;
         }
+
+        #barNav{
+            display:none;
+        }
+
     </style>
 
     <div class="containerPrincipal">

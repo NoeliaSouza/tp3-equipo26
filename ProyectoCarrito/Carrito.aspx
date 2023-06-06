@@ -55,21 +55,25 @@
         <div class="row g-0">
             <div class="col-md-12" style="color: white; font-weight: bold;">
                 <div class="card-body d-flex">
-                    <div class="col-md-2"></div>
+                    <%--<div class="col-md-2 col-sm-2"></div>--%>
                     <!-- Columna vacía sin título -->
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-sm-2" style="width:16.66%;">
+                        <p class="card-title itemsCarrito"></p>
+                    </div>
+
+                    <div class="col-md-2 col-sm-2" style="width:16.66%;">
                         <p class="card-title itemsCarrito">Nombre</p>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-sm-2" style="width:16.66%;">
                         <p class="card-title itemsCarrito">Marca</p>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-sm-2" style="width:16.66%;">
                         <p class="card-title itemsCarrito">Precio</p>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-sm-2" style="width:16.66%;">
                         <p class="card-title itemsCarrito">Cantidad</p>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-sm-2" style="width:16.66%;">
                         <p class="card-title itemsCarrito">Total</p>
                     </div>
                 </div>
@@ -139,7 +143,7 @@
             text-align: center;
         }
        
-
+   
        
     </style>
 
